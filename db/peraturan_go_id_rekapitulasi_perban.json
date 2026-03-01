@@ -1,0 +1,530 @@
+[
+  {
+    "tahun": "Badan Kepegawaian Negara",
+    "jumlah_peraturan": 309,
+    "berlaku": 295,
+    "tidak_berlaku": 14
+  },
+  {
+    "tahun": "Badan Koordinasi Penanaman Modal",
+    "jumlah_peraturan": 161,
+    "berlaku": 141,
+    "tidak_berlaku": 20
+  },
+  {
+    "tahun": "Badan Meteorologi,Klimatologi,dan Geofisika",
+    "jumlah_peraturan": 171,
+    "berlaku": 156,
+    "tidak_berlaku": 15
+  },
+  {
+    "tahun": "Badan Narkotika Nasional",
+    "jumlah_peraturan": 158,
+    "berlaku": 135,
+    "tidak_berlaku": 23
+  },
+  {
+    "tahun": "Badan Nasional Penanggulangan Bencana",
+    "jumlah_peraturan": 148,
+    "berlaku": 133,
+    "tidak_berlaku": 15
+  },
+  {
+    "tahun": "Badan Nasional Penanggulangan Terorisme",
+    "jumlah_peraturan": 42,
+    "berlaku": 40,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": "Badan Nasional Pengelola Perbatasan",
+    "jumlah_peraturan": 81,
+    "berlaku": 76,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Badan Pengatur Hilir Minyak dan Gas Bumi",
+    "jumlah_peraturan": 141,
+    "berlaku": 127,
+    "tidak_berlaku": 14
+  },
+  {
+    "tahun": "Badan Pengawas Obat dan Makanan",
+    "jumlah_peraturan": 420,
+    "berlaku": 360,
+    "tidak_berlaku": 60
+  },
+  {
+    "tahun": "Badan Pengawas Pemilihan Umum",
+    "jumlah_peraturan": 218,
+    "berlaku": 159,
+    "tidak_berlaku": 59
+  },
+  {
+    "tahun": "Badan Pengawas Tenaga Nuklir",
+    "jumlah_peraturan": 120,
+    "berlaku": 114,
+    "tidak_berlaku": 6
+  },
+  {
+    "tahun": "Badan Pengawasan Keuangan dan Pembangunan",
+    "jumlah_peraturan": 140,
+    "berlaku": 132,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": "Badan Penyelenggara Jaminan Sosial Kesehatan",
+    "jumlah_peraturan": 40,
+    "berlaku": 32,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": "Badan Pertanahan Nasional",
+    "jumlah_peraturan": 24,
+    "berlaku": 19,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Badan Pusat Statistik",
+    "jumlah_peraturan": 124,
+    "berlaku": 116,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": "Badan SAR Nasional",
+    "jumlah_peraturan": 62,
+    "berlaku": 57,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Badan Standardisasi Nasional",
+    "jumlah_peraturan": 155,
+    "berlaku": 141,
+    "tidak_berlaku": 14
+  },
+  {
+    "tahun": "Badan Tenaga Nuklir Nasional",
+    "jumlah_peraturan": 94,
+    "berlaku": 85,
+    "tidak_berlaku": 9
+  },
+  {
+    "tahun": "Badan Wakaf Indonesia",
+    "jumlah_peraturan": 12,
+    "berlaku": 11,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Dewan Kehormatan Penyelenggara Pemilihan Umum",
+    "jumlah_peraturan": 16,
+    "berlaku": 14,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": "Dewan Perwakilan Rakyat",
+    "jumlah_peraturan": 24,
+    "berlaku": 19,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Kejaksaan Agung",
+    "jumlah_peraturan": 108,
+    "berlaku": 103,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Arsip Nasional",
+    "jumlah_peraturan": 205,
+    "berlaku": 189,
+    "tidak_berlaku": 16
+  },
+  {
+    "tahun": "Komisi Nasional Hak Asasi Manusia",
+    "jumlah_peraturan": 33,
+    "berlaku": 33,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Komisi Pemberantasan Korupsi",
+    "jumlah_peraturan": 54,
+    "berlaku": 53,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Komisi Pemilihan Umum",
+    "jumlah_peraturan": 274,
+    "berlaku": 206,
+    "tidak_berlaku": 68
+  },
+  {
+    "tahun": "Komisi Yudisial",
+    "jumlah_peraturan": 27,
+    "berlaku": 25,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": "Konsil Kedokteran Indonesia",
+    "jumlah_peraturan": 116,
+    "berlaku": 112,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": "Lembaga Administrasi Negara",
+    "jumlah_peraturan": 209,
+    "berlaku": 182,
+    "tidak_berlaku": 27
+  },
+  {
+    "tahun": "Lembaga Ilmu Pengetahuan Indonesia",
+    "jumlah_peraturan": 112,
+    "berlaku": 101,
+    "tidak_berlaku": 11
+  },
+  {
+    "tahun": "Lembaga Penjamin Simpanan",
+    "jumlah_peraturan": 40,
+    "berlaku": 37,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Lembaga Perlindungan Saksi dan Korban",
+    "jumlah_peraturan": 44,
+    "berlaku": 43,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Lembaga Sandi Negara",
+    "jumlah_peraturan": 111,
+    "berlaku": 99,
+    "tidak_berlaku": 12
+  },
+  {
+    "tahun": "Mahkamah Agung",
+    "jumlah_peraturan": 79,
+    "berlaku": 75,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": "Ombudsman Republik Indonesia",
+    "jumlah_peraturan": 61,
+    "berlaku": 54,
+    "tidak_berlaku": 7
+  },
+  {
+    "tahun": "Pusat Pelaporan dan Analisis Transaksi Keuangan",
+    "jumlah_peraturan": 69,
+    "berlaku": 58,
+    "tidak_berlaku": 11
+  },
+  {
+    "tahun": "Kepolisian Negara Republik Indonesia",
+    "jumlah_peraturan": 293,
+    "berlaku": 262,
+    "tidak_berlaku": 31
+  },
+  {
+    "tahun": "Dewan Perwakilan Daerah",
+    "jumlah_peraturan": 4,
+    "berlaku": 4,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Pengendalian Dampak Lingkungan",
+    "jumlah_peraturan": 1,
+    "berlaku": 0,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Komisi Penyiaran Indonesia",
+    "jumlah_peraturan": 7,
+    "berlaku": 7,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Lembaga Penerbangan dan Antariksa Nasional",
+    "jumlah_peraturan": 33,
+    "berlaku": 32,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Badan Pemeriksa Keuangan",
+    "jumlah_peraturan": 44,
+    "berlaku": 41,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Otoritas Jasa Keuangan",
+    "jumlah_peraturan": 619,
+    "berlaku": 524,
+    "tidak_berlaku": 95
+  },
+  {
+    "tahun": "Bank Indonesia",
+    "jumlah_peraturan": 256,
+    "berlaku": 223,
+    "tidak_berlaku": 33
+  },
+  {
+    "tahun": "Mahkamah Konstitusi",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Dewan Jaminan Sosial Nasional",
+    "jumlah_peraturan": 14,
+    "berlaku": 10,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": "Perpustakaan Nasional",
+    "jumlah_peraturan": 153,
+    "berlaku": 150,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Badan Nasional Penempatan dan Perlindungan Tenaga Kerja Indonesia",
+    "jumlah_peraturan": 22,
+    "berlaku": 19,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah",
+    "jumlah_peraturan": 144,
+    "berlaku": 121,
+    "tidak_berlaku": 23
+  },
+  {
+    "tahun": "Badan Informasi Geospasial",
+    "jumlah_peraturan": 59,
+    "berlaku": 54,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Komisi Informasi Pusat",
+    "jumlah_peraturan": 15,
+    "berlaku": 15,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Lembaga Pembiayaan Ekspor Indonesia",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Komisi Aparatur Sipil Negara",
+    "jumlah_peraturan": 8,
+    "berlaku": 8,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Penyelenggara Jaminan Sosial Ketenagakerjaan",
+    "jumlah_peraturan": 18,
+    "berlaku": 15,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Badan Pengkajian Dan Penerapan Teknologi",
+    "jumlah_peraturan": 28,
+    "berlaku": 23,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Badan Keamanan Laut",
+    "jumlah_peraturan": 35,
+    "berlaku": 35,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Pembinaan Ideologi Pancasila",
+    "jumlah_peraturan": 42,
+    "berlaku": 41,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Badan Pengawas Perdagangan Berjangka Komiditi",
+    "jumlah_peraturan": 15,
+    "berlaku": 15,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Siber dan Sandi Negara",
+    "jumlah_peraturan": 78,
+    "berlaku": 74,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": "Badan Ekonomi Kreatif",
+    "jumlah_peraturan": 41,
+    "berlaku": 40,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Badan Amil Zakat Nasional",
+    "jumlah_peraturan": 17,
+    "berlaku": 15,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": "Badan Nasional Pencarian dan Pertolongan",
+    "jumlah_peraturan": 61,
+    "berlaku": 58,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Badan Pengelola Keuangan Haji",
+    "jumlah_peraturan": 34,
+    "berlaku": 32,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": "Badan Kependudukan dan Keluarga Berencana Nasional",
+    "jumlah_peraturan": 93,
+    "berlaku": 83,
+    "tidak_berlaku": 10
+  },
+  {
+    "tahun": "Badan Inteligen Negara",
+    "jumlah_peraturan": 24,
+    "berlaku": 24,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Komisi Pengawas Persaingan Usaha",
+    "jumlah_peraturan": 16,
+    "berlaku": 15,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Dewan Kawasan Perdagangan Bebas dan Pelabuhan Bebas Batam",
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Pelindungan Pekerja Migran Indonesia",
+    "jumlah_peraturan": 48,
+    "berlaku": 47,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Badan Nasional Sertifikasi Profesi",
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Pengelola Tabungan Perumahan Rakyat",
+    "jumlah_peraturan": 23,
+    "berlaku": 23,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Dewan Nasional Kawasan Ekonomi Khusus",
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Riset dan Inovasi Nasional",
+    "jumlah_peraturan": 101,
+    "berlaku": 97,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": "Badan Pangan Nasional",
+    "jumlah_peraturan": 76,
+    "berlaku": 76,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Lembaga Otorita Ibu kota Nusantara",
+    "jumlah_peraturan": 42,
+    "berlaku": 42,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Karantina Indonesia",
+    "jumlah_peraturan": 13,
+    "berlaku": 13,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Gizi",
+    "jumlah_peraturan": 14,
+    "berlaku": 14,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Penyelenggara Jaminan Produk Halal",
+    "jumlah_peraturan": 11,
+    "berlaku": 11,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Dewan Ekonomi Nasional",
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Penyelenggara Haji",
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Percepatan Pengentasan Kemiskinan",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Lembaga Penyiaran Publik Televisi Republik Indonesia",
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "DPRD Kota Bandung",
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Tentara Nasional Indonesia",
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "DPRD Kabupaten Sukoharjo",
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "DPRD Kabupaten Banyuwangi",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Otorita Pengelola Pantai Utara Jawa",
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "DPRD Kabupaten Bandung",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Badan Pengaturan BUMN",
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  }
+]

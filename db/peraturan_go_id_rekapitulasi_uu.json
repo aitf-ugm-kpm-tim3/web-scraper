@@ -1,0 +1,494 @@
+[
+  {
+    "tahun": 2026,
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2025,
+    "jumlah_peraturan": 22,
+    "berlaku": 22,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2024,
+    "jumlah_peraturan": 152,
+    "berlaku": 152,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2023,
+    "jumlah_peraturan": 22,
+    "berlaku": 22,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2022,
+    "jumlah_peraturan": 29,
+    "berlaku": 29,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2021,
+    "jumlah_peraturan": 11,
+    "berlaku": 11,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2020,
+    "jumlah_peraturan": 13,
+    "berlaku": 12,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2019,
+    "jumlah_peraturan": 24,
+    "berlaku": 23,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2018,
+    "jumlah_peraturan": 13,
+    "berlaku": 12,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2017,
+    "jumlah_peraturan": 18,
+    "berlaku": 18,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2016,
+    "jumlah_peraturan": 20,
+    "berlaku": 20,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2015,
+    "jumlah_peraturan": 14,
+    "berlaku": 14,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2014,
+    "jumlah_peraturan": 42,
+    "berlaku": 38,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 2013,
+    "jumlah_peraturan": 24,
+    "berlaku": 23,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2012,
+    "jumlah_peraturan": 24,
+    "berlaku": 23,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2011,
+    "jumlah_peraturan": 24,
+    "berlaku": 23,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2010,
+    "jumlah_peraturan": 13,
+    "berlaku": 13,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2009,
+    "jumlah_peraturan": 52,
+    "berlaku": 46,
+    "tidak_berlaku": 6
+  },
+  {
+    "tahun": 2008,
+    "jumlah_peraturan": 56,
+    "berlaku": 52,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 2007,
+    "jumlah_peraturan": 48,
+    "berlaku": 45,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 2006,
+    "jumlah_peraturan": 23,
+    "berlaku": 22,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2005,
+    "jumlah_peraturan": 14,
+    "berlaku": 13,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2004,
+    "jumlah_peraturan": 41,
+    "berlaku": 33,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": 2003,
+    "jumlah_peraturan": 41,
+    "berlaku": 37,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 2002,
+    "jumlah_peraturan": 32,
+    "berlaku": 28,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 2001,
+    "jumlah_peraturan": 22,
+    "berlaku": 20,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 2000,
+    "jumlah_peraturan": 38,
+    "berlaku": 35,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1999,
+    "jumlah_peraturan": 56,
+    "berlaku": 45,
+    "tidak_berlaku": 11
+  },
+  {
+    "tahun": 1998,
+    "jumlah_peraturan": 13,
+    "berlaku": 12,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1997,
+    "jumlah_peraturan": 32,
+    "berlaku": 17,
+    "tidak_berlaku": 15
+  },
+  {
+    "tahun": 1996,
+    "jumlah_peraturan": 9,
+    "berlaku": 8,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1995,
+    "jumlah_peraturan": 13,
+    "berlaku": 10,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1994,
+    "jumlah_peraturan": 12,
+    "berlaku": 12,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1993,
+    "jumlah_peraturan": 7,
+    "berlaku": 7,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1992,
+    "jumlah_peraturan": 25,
+    "berlaku": 8,
+    "tidak_berlaku": 17
+  },
+  {
+    "tahun": 1991,
+    "jumlah_peraturan": 7,
+    "berlaku": 6,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1990,
+    "jumlah_peraturan": 11,
+    "berlaku": 9,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 1989,
+    "jumlah_peraturan": 7,
+    "berlaku": 4,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1988,
+    "jumlah_peraturan": 6,
+    "berlaku": 4,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 1987,
+    "jumlah_peraturan": 8,
+    "berlaku": 7,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1986,
+    "jumlah_peraturan": 5,
+    "berlaku": 5,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1985,
+    "jumlah_peraturan": 17,
+    "berlaku": 9,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": 1984,
+    "jumlah_peraturan": 8,
+    "berlaku": 5,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1983,
+    "jumlah_peraturan": 8,
+    "berlaku": 8,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1982,
+    "jumlah_peraturan": 21,
+    "berlaku": 19,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 1981,
+    "jumlah_peraturan": 8,
+    "berlaku": 8,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1980,
+    "jumlah_peraturan": 13,
+    "berlaku": 10,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1979,
+    "jumlah_peraturan": 5,
+    "berlaku": 5,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1978,
+    "jumlah_peraturan": 8,
+    "berlaku": 8,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1977,
+    "jumlah_peraturan": 2,
+    "berlaku": 2,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1976,
+    "jumlah_peraturan": 11,
+    "berlaku": 9,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 1975,
+    "jumlah_peraturan": 5,
+    "berlaku": 2,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1974,
+    "jumlah_peraturan": 11,
+    "berlaku": 7,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 1973,
+    "jumlah_peraturan": 7,
+    "berlaku": 5,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 1972,
+    "jumlah_peraturan": 6,
+    "berlaku": 5,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1971,
+    "jumlah_peraturan": 13,
+    "berlaku": 9,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 1970,
+    "jumlah_peraturan": 14,
+    "berlaku": 7,
+    "tidak_berlaku": 7
+  },
+  {
+    "tahun": 1969,
+    "jumlah_peraturan": 16,
+    "berlaku": 13,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1968,
+    "jumlah_peraturan": 25,
+    "berlaku": 17,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": 1967,
+    "jumlah_peraturan": 14,
+    "berlaku": 9,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": 1966,
+    "jumlah_peraturan": 14,
+    "berlaku": 13,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1965,
+    "jumlah_peraturan": 22,
+    "berlaku": 18,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 1964,
+    "jumlah_peraturan": 36,
+    "berlaku": 29,
+    "tidak_berlaku": 7
+  },
+  {
+    "tahun": 1963,
+    "jumlah_peraturan": 14,
+    "berlaku": 11,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1962,
+    "jumlah_peraturan": 19,
+    "berlaku": 13,
+    "tidak_berlaku": 6
+  },
+  {
+    "tahun": 1961,
+    "jumlah_peraturan": 22,
+    "berlaku": 15,
+    "tidak_berlaku": 7
+  },
+  {
+    "tahun": 1960,
+    "jumlah_peraturan": 9,
+    "berlaku": 5,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 1959,
+    "jumlah_peraturan": 29,
+    "berlaku": 22,
+    "tidak_berlaku": 7
+  },
+  {
+    "tahun": 1958,
+    "jumlah_peraturan": 87,
+    "berlaku": 78,
+    "tidak_berlaku": 9
+  },
+  {
+    "tahun": 1957,
+    "jumlah_peraturan": 80,
+    "berlaku": 74,
+    "tidak_berlaku": 6
+  },
+  {
+    "tahun": 1956,
+    "jumlah_peraturan": 35,
+    "berlaku": 32,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1955,
+    "jumlah_peraturan": 12,
+    "berlaku": 11,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1954,
+    "jumlah_peraturan": 76,
+    "berlaku": 73,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 1953,
+    "jumlah_peraturan": 37,
+    "berlaku": 29,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": 1952,
+    "jumlah_peraturan": 24,
+    "berlaku": 23,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1951,
+    "jumlah_peraturan": 24,
+    "berlaku": 23,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 1950,
+    "jumlah_peraturan": 17,
+    "berlaku": 9,
+    "tidak_berlaku": 8
+  },
+  {
+    "tahun": 1949,
+    "jumlah_peraturan": 12,
+    "berlaku": 12,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1948,
+    "jumlah_peraturan": 35,
+    "berlaku": 33,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 1947,
+    "jumlah_peraturan": 41,
+    "berlaku": 41,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1946,
+    "jumlah_peraturan": 24,
+    "berlaku": 22,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 1945,
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  }
+]

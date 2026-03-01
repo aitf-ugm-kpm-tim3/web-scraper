@@ -1,0 +1,26 @@
+[
+  {
+    "tahun": "Peraturan Daerah Provinsi",
+    "jumlah_peraturan": 3449,
+    "berlaku": 3449,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Peraturan Daerah Kabupaten",
+    "jumlah_peraturan": 11015,
+    "berlaku": 11015,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Peraturan Daerah Kota",
+    "jumlah_peraturan": 4134,
+    "berlaku": 4134,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Peraturan Dewan Perwakilan Rakyat Daerah",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  }
+]

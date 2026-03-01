@@ -1,0 +1,434 @@
+[
+  {
+    "tahun": "Kementerian Agama",
+    "jumlah_peraturan": 838,
+    "berlaku": 748,
+    "tidak_berlaku": 90
+  },
+  {
+    "tahun": "Kementerian Dalam Negeri",
+    "jumlah_peraturan": "1.288",
+    "berlaku": "1.210",
+    "tidak_berlaku": 78
+  },
+  {
+    "tahun": "Kementerian Energi dan Sumber Daya Mineral",
+    "jumlah_peraturan": 563,
+    "berlaku": 463,
+    "tidak_berlaku": 100
+  },
+  {
+    "tahun": "Kementerian Hukum dan Hak Asasi Manusia",
+    "jumlah_peraturan": 570,
+    "berlaku": 492,
+    "tidak_berlaku": 78
+  },
+  {
+    "tahun": "Kementerian Kehutanan",
+    "jumlah_peraturan": 476,
+    "berlaku": 422,
+    "tidak_berlaku": 54
+  },
+  {
+    "tahun": "Kementerian Kelautan dan Perikanan",
+    "jumlah_peraturan": 756,
+    "berlaku": 650,
+    "tidak_berlaku": 106
+  },
+  {
+    "tahun": "Kementerian Kesehatan",
+    "jumlah_peraturan": 881,
+    "berlaku": 732,
+    "tidak_berlaku": 149
+  },
+  {
+    "tahun": "Kementerian Keuangan",
+    "jumlah_peraturan": "3.786",
+    "berlaku": "3.254",
+    "tidak_berlaku": 532
+  },
+  {
+    "tahun": "Kementerian Komunikasi dan Informatika",
+    "jumlah_peraturan": 308,
+    "berlaku": 257,
+    "tidak_berlaku": 51
+  },
+  {
+    "tahun": "Kementerian Luar Negeri",
+    "jumlah_peraturan": 168,
+    "berlaku": 156,
+    "tidak_berlaku": 12
+  },
+  {
+    "tahun": "Kementerian Koperasi, Usaha Kecil dan Menengah",
+    "jumlah_peraturan": 167,
+    "berlaku": 155,
+    "tidak_berlaku": 12
+  },
+  {
+    "tahun": "Kementerian Lingkungan Hidup",
+    "jumlah_peraturan": 172,
+    "berlaku": 133,
+    "tidak_berlaku": 39
+  },
+  {
+    "tahun": "Kementerian Pemberdayaan Perempuan dan Perlindungan Anak",
+    "jumlah_peraturan": 194,
+    "berlaku": 175,
+    "tidak_berlaku": 19
+  },
+  {
+    "tahun": "Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi",
+    "jumlah_peraturan": 651,
+    "berlaku": 560,
+    "tidak_berlaku": 91
+  },
+  {
+    "tahun": "Kementerian Perencanaan Pembangunan Nasional/Badan Perencanaan Pembangunan Nasional",
+    "jumlah_peraturan": 145,
+    "berlaku": 135,
+    "tidak_berlaku": 10
+  },
+  {
+    "tahun": "Kementerian Negara Perumahan Rakyat",
+    "jumlah_peraturan": 118,
+    "berlaku": 111,
+    "tidak_berlaku": 7
+  },
+  {
+    "tahun": "Kementerian Negara Riset dan Teknologi",
+    "jumlah_peraturan": 22,
+    "berlaku": 21,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": "Kementerian Pariwisata dan Ekonomi Kreatif",
+    "jumlah_peraturan": 117,
+    "berlaku": 100,
+    "tidak_berlaku": 17
+  },
+  {
+    "tahun": "Kementerian Pekerjaan Umum",
+    "jumlah_peraturan": 113,
+    "berlaku": 104,
+    "tidak_berlaku": 9
+  },
+  {
+    "tahun": "Kementerian Pendidikan dan Kebudayaan",
+    "jumlah_peraturan": 705,
+    "berlaku": 580,
+    "tidak_berlaku": 125
+  },
+  {
+    "tahun": "Kementerian Perdagangan",
+    "jumlah_peraturan": 950,
+    "berlaku": 840,
+    "tidak_berlaku": 110
+  },
+  {
+    "tahun": "Kementerian Perindustrian",
+    "jumlah_peraturan": 919,
+    "berlaku": 825,
+    "tidak_berlaku": 94
+  },
+  {
+    "tahun": "Kementerian Pertahanan",
+    "jumlah_peraturan": 573,
+    "berlaku": 531,
+    "tidak_berlaku": 42
+  },
+  {
+    "tahun": "Kementerian Pertanian",
+    "jumlah_peraturan": 601,
+    "berlaku": 518,
+    "tidak_berlaku": 83
+  },
+  {
+    "tahun": "Kementerian Tenaga Kerja dan Transmigrasi",
+    "jumlah_peraturan": 139,
+    "berlaku": 123,
+    "tidak_berlaku": 16
+  },
+  {
+    "tahun": "Kementerian Badan Usaha Milik Negara",
+    "jumlah_peraturan": 69,
+    "berlaku": 63,
+    "tidak_berlaku": 6
+  },
+  {
+    "tahun": "Kementerian Kebudayaan dan Pariwisata",
+    "jumlah_peraturan": 38,
+    "berlaku": 36,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Kesejahteraan Rakyat",
+    "jumlah_peraturan": 18,
+    "berlaku": 16,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": "Kementerian Pembangunan Daerah Tertinggal",
+    "jumlah_peraturan": 27,
+    "berlaku": 23,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": "Kementerian Pendidikan Nasional",
+    "jumlah_peraturan": 37,
+    "berlaku": 31,
+    "tidak_berlaku": 6
+  },
+  {
+    "tahun": "Kementerian Perhubungan",
+    "jumlah_peraturan": "1.247",
+    "berlaku": "1.112",
+    "tidak_berlaku": 135
+  },
+  {
+    "tahun": "Kementerian Sekretariat Negara",
+    "jumlah_peraturan": 49,
+    "berlaku": 45,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": "Kementerian Sosial",
+    "jumlah_peraturan": 318,
+    "berlaku": 278,
+    "tidak_berlaku": 40
+  },
+  {
+    "tahun": "Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional",
+    "jumlah_peraturan": 254,
+    "berlaku": 224,
+    "tidak_berlaku": 30
+  },
+  {
+    "tahun": "Kementerian Ketenagakerjaan",
+    "jumlah_peraturan": 242,
+    "berlaku": 211,
+    "tidak_berlaku": 31
+  },
+  {
+    "tahun": "Kementerian Pekerjaan Umum dan Perumahan Rakyat",
+    "jumlah_peraturan": 222,
+    "berlaku": 203,
+    "tidak_berlaku": 19
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Perekonomian",
+    "jumlah_peraturan": 93,
+    "berlaku": 83,
+    "tidak_berlaku": 10
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Politik, Hukum, Dan Keamanan",
+    "jumlah_peraturan": 55,
+    "berlaku": 52,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Kementerian Lingkungan Hidup dan Kehutanan",
+    "jumlah_peraturan": 368,
+    "berlaku": 337,
+    "tidak_berlaku": 31
+  },
+  {
+    "tahun": "Kementerian Pariwisata",
+    "jumlah_peraturan": 82,
+    "berlaku": 70,
+    "tidak_berlaku": 12
+  },
+  {
+    "tahun": "Kementerian Riset, Teknologi, dan Pendidikan Tinggi",
+    "jumlah_peraturan": 358,
+    "berlaku": 309,
+    "tidak_berlaku": 49
+  },
+  {
+    "tahun": "Kementerian Pemuda dan Olahraga Republik Indonesia",
+    "jumlah_peraturan": 148,
+    "berlaku": 128,
+    "tidak_berlaku": 20
+  },
+  {
+    "tahun": "Kementerian Desa, Pembangunan Daerah Tertinggal, dan Transmigrasi",
+    "jumlah_peraturan": 178,
+    "berlaku": 161,
+    "tidak_berlaku": 17
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Pembangunan Manusia dan Kebudayaan",
+    "jumlah_peraturan": 56,
+    "berlaku": 51,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Kemaritiman",
+    "jumlah_peraturan": 30,
+    "berlaku": 25,
+    "tidak_berlaku": 5
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Kemaritiman dan Investasi",
+    "jumlah_peraturan": 27,
+    "berlaku": 27,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi",
+    "jumlah_peraturan": 213,
+    "berlaku": 210,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": "Kementerian Hukum",
+    "jumlah_peraturan": 60,
+    "berlaku": 60,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Hak Asasi Manusia",
+    "jumlah_peraturan": 19,
+    "berlaku": 19,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Hukum, Hak Asasi Manusia, Imigrasi, dan Pemasyarakatan",
+    "jumlah_peraturan": 6,
+    "berlaku": 6,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Pangan",
+    "jumlah_peraturan": 5,
+    "berlaku": 5,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Imigrasi dan Pemasyarakatan",
+    "jumlah_peraturan": 18,
+    "berlaku": 18,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Hukum, Hak Asasi Manusia, Imigrasi, dan Pemasyarakatan",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Desa dan Pembangunan Daerah Tertinggal",
+    "jumlah_peraturan": 17,
+    "berlaku": 17,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Transmigrasi",
+    "jumlah_peraturan": 22,
+    "berlaku": 22,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Pemberdayaan Masyarakat",
+    "jumlah_peraturan": 2,
+    "berlaku": 2,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Lingkungan Hidup",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Pemberdayaan Masyarakat",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Ekonomi Kreatif/Badan Ekonomi Kreatif",
+    "jumlah_peraturan": 14,
+    "berlaku": 14,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Pelindungan Pekerja Migran Indonesia/Badan Pelindungan Pekerja Migran Indonesia",
+    "jumlah_peraturan": 35,
+    "berlaku": 35,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Lingkungan Hidup/Badan Pengendalian Lingkungan Hidup",
+    "jumlah_peraturan": 31,
+    "berlaku": 31,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koperasi",
+    "jumlah_peraturan": 14,
+    "berlaku": 14,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Usaha mikro kecil dan menengah",
+    "jumlah_peraturan": 10,
+    "berlaku": 10,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Perumahan dan Kawasan Permukiman",
+    "jumlah_peraturan": 26,
+    "berlaku": 26,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Politik dan Keamanan",
+    "jumlah_peraturan": 12,
+    "berlaku": 12,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Pendidikan Dasar dan Menengah",
+    "jumlah_peraturan": 45,
+    "berlaku": 45,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Pendidikan Tinggi, Sains, dan Teknologi",
+    "jumlah_peraturan": 66,
+    "berlaku": 66,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Kebudayaan",
+    "jumlah_peraturan": 5,
+    "berlaku": 5,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Perumahan dan Kawasan Permukiman",
+    "jumlah_peraturan": 0,
+    "berlaku": 0,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Komunikasi dan Digital",
+    "jumlah_peraturan": 25,
+    "berlaku": 25,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Koordinator Bidang Infrastruktur dan Pembangunan Kewilayahan",
+    "jumlah_peraturan": 12,
+    "berlaku": 12,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": "Kementerian Haji dan Umrah",
+    "jumlah_peraturan": 8,
+    "berlaku": 8,
+    "tidak_berlaku": 0
+  }
+]
