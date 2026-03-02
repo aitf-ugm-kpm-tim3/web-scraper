@@ -5,7 +5,7 @@ from pathlib import Path
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 from crawl4ai import JsonCssExtractionStrategy
 
-peraturan = ['uu', 'perppu', 'pp', 'perpres', 'permen', 'perban', 'perda']
+peraturan = ['uu', 'perppu', 'pp', 'perpres', 'penpres', 'permen', 'perban', 'keppres', 'inpres', 'perda']
 
 async def main():
     schema = {
@@ -59,7 +59,7 @@ async def main():
                         if key in item and item[key]:
                             try:
                                 # Strip whitespace and convert to int
-                                item[key] = int(item[key].strip())
+                                item[key] = int(item[key].strip("."))
                             except (ValueError, TypeError):
                                 # Fallback if conversion fails (keep as original or None)
                                 pass

@@ -1,5 +1,11 @@
 [
   {
+    "tahun": 2026,
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
     "tahun": 2025,
     "jumlah_peraturan": 43,
     "berlaku": 43,

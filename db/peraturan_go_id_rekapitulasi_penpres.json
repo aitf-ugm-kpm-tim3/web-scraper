@@ -1,0 +1,56 @@
+[
+  {
+    "tahun": 2020,
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1966,
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1965,
+    "jumlah_peraturan": 31,
+    "berlaku": 31,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1964,
+    "jumlah_peraturan": 6,
+    "berlaku": 6,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1963,
+    "jumlah_peraturan": 16,
+    "berlaku": 16,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1962,
+    "jumlah_peraturan": 4,
+    "berlaku": 4,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1961,
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1960,
+    "jumlah_peraturan": 5,
+    "berlaku": 5,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 1959,
+    "jumlah_peraturan": 7,
+    "berlaku": 7,
+    "tidak_berlaku": 0
+  }
+]
