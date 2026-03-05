@@ -4,20 +4,18 @@ import os
 from pathlib import Path
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode, JsonCssExtractionStrategy
 
-peraturan_list = ['uu', 'pp', 'perpres', 'perppu', 'penpres', 'keppres', 'inpres', 'permenkominfo', 'permenkomdigi']
+from config import PERATURAN_CONFIG, get_rekapitulasi_filename, get_all_extracted_filename
 
 async def main():
     async with AsyncWebCrawler() as crawler:
-        for p in peraturan_list:
+        for p in PERATURAN_CONFIG.keys():
             print(f"\nProcessing regulation type: {p}")
             # 1. Load the rekapitulasi data
             # Assuming the JSON files are in the same directory or adjust path as needed
-            # The user's files seem to be in 'db/' or the current dir. 
-            # Given the previous script used local path, I'll stick to that but keep it flexible.
-            rekapitulasi_path = Path(f'peraturan_go_id_rekapitulasi_{p}.json')
+            rekapitulasi_path = Path(get_rekapitulasi_filename(p))
             if not rekapitulasi_path.exists():
                 # Fallback to ../db/ if not found in current dir
-                db_path = Path('..') / 'db' / f'peraturan_go_id_rekapitulasi_{p}.json'
+                db_path = Path('..') / 'db' / get_rekapitulasi_filename(p)
                 if db_path.exists():
                     rekapitulasi_path = db_path
                 else:
@@ -31,8 +29,12 @@ async def main():
             urls = []
             for item in rekap_data:
                 tahun = item.get('tahun')
-                jumlah = item.get('jumlah_peraturan', 0)
+                try:
+                    jumlah = int(item.get('jumlah_peraturan', 0))
+                except (ValueError, TypeError):
+                    jumlah = 0
                 for nomor in range(1, jumlah + 1):
+                    # Use p directly as the slug (matches standardized keys in config.py)
                     url = f"https://peraturan.go.id/id/{p}-no-{nomor}-tahun-{tahun}"
                     urls.append(url)
 
@@ -97,7 +99,7 @@ async def main():
                     json.dump(all_results, f, indent=2, ensure_ascii=False)
 
             # 5. Save all results for this type
-            output_path = Path(f'peraturan_go_id_all_{p}.json')
+            output_path = Path(get_all_extracted_filename(p))
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(all_results, f, indent=2, ensure_ascii=False)
 

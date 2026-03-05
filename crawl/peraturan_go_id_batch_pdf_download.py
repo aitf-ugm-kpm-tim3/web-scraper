@@ -7,15 +7,10 @@ import aiohttp
 # Base URL for downloads
 BASE_URL = "https://peraturan.go.id"
 
-# List of JSON files to process
-json_files = [
-    'peraturan_go_id_all_inpres.json',
-    'peraturan_go_id_all_keppres.json',
-    'peraturan_go_id_all_penpres.json',
-    'peraturan_go_id_all_perppu.json',
-    'peraturan_go_id_all_perpres.json',
-    'peraturan_go_id_all_uu.json'
-]
+from config import PERATURAN_CONFIG, get_all_extracted_filename
+
+# List of JSON files to process (generated dynamically from config)
+json_files = [get_all_extracted_filename(p) for p in PERATURAN_CONFIG.keys()]
 
 # Output directory for PDFs
 DOWNLOAD_DIR = Path('pdf_downloads')

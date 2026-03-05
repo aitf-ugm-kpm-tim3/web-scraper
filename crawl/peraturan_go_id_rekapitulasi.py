@@ -5,11 +5,11 @@ from pathlib import Path
 from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 from crawl4ai import JsonCssExtractionStrategy
 
-peraturan = ['uu', 'perppu', 'pp', 'perpres', 'penpres', 'permen', 'perban', 'keppres', 'inpres', 'perda']
+from config import PERATURAN_CONFIG, get_rekapitulasi_filename
 
 async def main():
-    schema = {
-        "name": "Rekapitulasi Undang-Undang",
+    default_schema = {
+        "name": "Rekapitulasi Peraturan",
         "baseSelector": "div.accordion_2 div.card",
         "fields": [
             {
@@ -35,17 +35,46 @@ async def main():
         ]
     }
 
+    perda_schema = {
+        "name": "Rekapitulasi Perda",
+        "baseSelector": "div#accordionFlushExample div.accordion-item",
+        "fields": [
+            {
+                "name": "tahun", 
+                "selector": "h2.accordion-header button", 
+                "type": "text"
+            },
+            {
+                "name": "jumlah_peraturan", 
+                "selector": "div.accordion-body li:nth-child(1) small", 
+                "type": "text"
+            },
+            {
+                "name": "berlaku", 
+                "selector": "div.accordion-body li:nth-child(2) small", 
+                "type": "text"
+            },
+            {
+                "name": "tidak_berlaku", 
+                "selector": "div.accordion-body li:nth-child(3) small", 
+                "type": "text"
+            }
+        ]
+    }
+
     async with AsyncWebCrawler() as crawler:
-        for p in peraturan:
+        for name, path in PERATURAN_CONFIG.items():
+            current_schema = perda_schema if name.startswith("perda") else default_schema
+            
             # Construct the file URL for the local HTML file
-            url = f'https://peraturan.go.id/{p}/rekapitulasi'
+            url = f'https://peraturan.go.id/{path}'
             print(f"Crawling {url}...")
             
             result = await crawler.arun(
                 url=url,
                 config=CrawlerRunConfig(
                     cache_mode=CacheMode.BYPASS,
-                    extraction_strategy=JsonCssExtractionStrategy(schema)
+                    extraction_strategy=JsonCssExtractionStrategy(current_schema)
                 )
             )
             
@@ -65,12 +94,12 @@ async def main():
                                 pass
 
                 # Use an absolute path for the output file to be safe, or relative to the script
-                output_path = Path(__file__).parent / f'peraturan_go_id_rekapitulasi_{p}.json'
+                output_path = Path(__file__).parent / get_rekapitulasi_filename(name)
                 with open(output_path, 'w', encoding='utf-8') as f:
                     json.dump(data, f, indent=2, ensure_ascii=False)
                 print(f"Data saved to {output_path}")
             else:
-                print(f"Extraction failed for {p}: {result.error_message}")
+                print(f"Extraction failed for {name}: {result.error_message}")
 
 if __name__ == "__main__":
     asyncio.run(main())
