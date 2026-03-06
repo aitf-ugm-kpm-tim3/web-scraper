@@ -24,3 +24,7 @@ def get_rekapitulasi_filename(name):
 def get_all_extracted_filename(name):
     """Returns the filename for an extracted 'all' JSON file."""
     return f"peraturan_go_id_all_{name}.json"
+
+def get_metadata_filename(name):
+    """Returns the filename for a metadata JSON file."""
+    return f"peraturan_go_id_metadata_{name}.json"
