@@ -7,14 +7,13 @@ from pypdf import PdfReader
 import io
 from datetime import datetime
 
-from config import PERATURAN_CONFIG, get_all_extracted_filename, get_metadata_filename
+from config import PERATURAN_CONFIG, get_all_extracted_filename, get_metadata_filename, DB_ROOT
 
 # Base URL for downloads
 BASE_URL = "https://peraturan.go.id"
 
-# Output directory for enriched JSONs
-DB_DIR = Path('../db')
-DB_DIR.mkdir(parents=True, exist_ok=True)
+# Use DB_ROOT from config
+DB_DIR = DB_ROOT
 
 def parse_pdf_date(date_str):
     """Parses PDF date format (e.g., D:20140130155254+07'00') into ISO string."""
@@ -94,32 +93,43 @@ async def process_regulation_type(session, reg_type, semaphore):
     with open(input_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    enriched_data = []
-    
-    # To avoid serializing everything, we'll run in batches or gathered tasks
+    # Filter to only items that need metadata
+    items_to_process = []
+    indices = []
+    for idx, item in enumerate(data):
+        meta = item.get('pdf_metadata')
+        # Process if meta is missing or has error
+        if not meta or "error" in meta:
+            rel_path = item.get('dokumen_peraturan')
+            if rel_path and rel_path.endswith('.pdf'):
+                items_to_process.append(item)
+                indices.append(idx)
+
+    print(f"Total: {len(data)} | Already enriched: {len(data) - len(items_to_process)} | To process: {len(items_to_process)}")
+
+    if not items_to_process:
+        print(f"All items for {reg_type} are already enriched.")
+        return
+
+    # Extract metadata for the missing ones
     tasks = []
-    for item in data:
+    for item in items_to_process:
         rel_path = item.get('dokumen_peraturan')
-        if rel_path and rel_path.endswith('.pdf'):
-            url = f"{BASE_URL}/{rel_path.lstrip('/')}"
-            tasks.append((item, extract_metadata(session, url, semaphore)))
-        else:
-            enriched_data.append(item)
+        url = f"{BASE_URL}/{rel_path.lstrip('/')}"
+        tasks.append(extract_metadata(session, url, semaphore))
 
     if tasks:
-        print(f"Extracting metadata for {len(tasks)} PDFs in {reg_type}...")
-        objs, metadata_tasks = zip(*tasks)
-        metadata_results = await asyncio.gather(*metadata_tasks)
+        print(f"Extracting metadata for {len(tasks)} missing PDFs in {reg_type}...")
+        metadata_results = await asyncio.gather(*tasks)
         
-        for item, meta in zip(objs, metadata_results):
-            # Merge metadata into a sub-dictionary or flatten
-            item['pdf_metadata'] = meta
-            enriched_data.append(item)
+        # Merge back into original data using indices
+        for idx, meta in zip(indices, metadata_results):
+            data[idx]['pdf_metadata'] = meta
 
     output_filename = get_metadata_filename(reg_type)
     output_path = DB_DIR / output_filename
     with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(enriched_data, f, indent=2, ensure_ascii=False)
+        json.dump(data, f, indent=2, ensure_ascii=False)
     
     print(f"Saved enriched data to {output_path}")
 

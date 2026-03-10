@@ -10,12 +10,16 @@ import aiohttp
 import io
 from urllib.parse import urljoin
 from pypdf import PdfReader
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 # Add current directory to path if needed for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import configurations
-from config import PERATURAN_CONFIG, get_rekapitulasi_filename, get_all_extracted_filename, get_metadata_filename
+from config import PERATURAN_CONFIG, get_rekapitulasi_filename, get_all_extracted_filename, get_metadata_filename, DB_ROOT, PDF_ROOT
 from config_general import GENERAL_SITES_CONFIG, SCRAPER_CONFIG, OUTPUT_LINKS_FILE, OUTPUT_CONTENT_FILE
 
 # Fix for Windows NotImplementedError (asyncio subprocess)
@@ -113,10 +117,11 @@ async def run_rekapitulasi(crawler, name, path):
                     except (ValueError, TypeError):
                         pass
         
-        output_path = Path(__file__).parent / get_rekapitulasi_filename(name)
+        # Output file (absolute path from config)
+        output_path = get_rekapitulasi_filename(name)
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
-        return True, data, output_path
+        return True, data, Path(output_path)
     return False, result.error_message, None
 
 async def run_extract_all(crawler, p, rekap_data, batch_size=10):
@@ -171,11 +176,12 @@ async def run_extract_all(crawler, p, rekap_data, batch_size=10):
         
         progress_bar.progress(min((i + batch_size) / len(urls), 1.0))
         
-    output_path = Path(__file__).parent / get_all_extracted_filename(p)
+    # Output file (absolute path from config)
+    output_path = get_all_extracted_filename(p)
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(all_results, f, indent=2, ensure_ascii=False)
     
-    return all_results, output_path
+    return all_results, Path(output_path)
 
 # --- UI Components ---
 
@@ -186,17 +192,18 @@ st.markdown("Automated scraping for regulations and press releases.")
 
 setup_log_capture()
 
-tab0, tab1, tab2 = st.tabs(["� Dashboard & Stats", "�📜 Peraturan Go Id", "📰 Siaran Pers General"])
+tab0, tab1, tab2, tab3 = st.tabs(["📊 Dashboard & Stats", "📑📜 Peraturan Go Id", "📰 Siaran Pers General", "🏛️ Siaran Pers Komdigi"])
 
 with tab0:
     st.header("Data Overview & Statistics")
-    db_dir = Path(__file__).parent.parent / 'db'
+    db_dir = DB_ROOT
     
     if db_dir.exists():
         all_files = list(db_dir.glob("*.json"))
         
         # Key Metrics
-        col_m1, col_m2, col_m3, col_m4 = st.columns(4)
+        m_col1, m_col2, m_col3 = st.columns(3)
+        m_col4, m_col5, m_col6 = st.columns(3)
         
         # 1. Regulation Stats
         reg_files = [f for f in all_files if "peraturan_go_id_all" in f.name]
@@ -212,28 +219,49 @@ with tab0:
                     reg_counts[type_key] = count
             except: pass
             
-        col_m1.metric("Total Regulations", f"{total_regs:,}")
+        m_col1.metric("Total Regulations", f"{total_regs:,}")
         
         # 2. Press Release Stats
         news_file = db_dir / "siaran_pers_general.json"
+        komdigi_file = db_dir / "siaran_pers_komdigi_all.json"
         total_news = 0
         news_by_source = {}
+        
+        # General news
         if news_file.exists():
             try:
                 with open(news_file, 'r', encoding='utf-8') as j:
                     data = json.load(j)
-                    total_news = len(data)
+                    total_news += len(data)
                     for item in data:
                         src = item.get('source', 'Unknown')
                         news_by_source[src] = news_by_source.get(src, 0) + 1
             except: pass
-        col_m2.metric("Press Releases", f"{total_news:,}")
+            
+        # Komdigi news
+        if komdigi_file.exists():
+            try:
+                with open(komdigi_file, 'r', encoding='utf-8') as j:
+                    data = json.load(j)
+                    total_news += len(data)
+                    news_by_source['KOMDIGI'] = len(data)
+            except: pass
+            
+        m_col2.metric("Press Releases", f"{total_news:,}")
         
-        # 3. File Stats
-        col_m3.metric("Total JSON Files", len(all_files))
+        # 3. PDF Stats
+        pdf_dir = PDF_ROOT
+        all_pdfs = list(pdf_dir.glob("**/*.pdf")) if pdf_dir.exists() else []
+        pdf_size = sum(f.stat().st_size for f in all_pdfs) / (1024 * 1024) if all_pdfs else 0
+        m_col3.metric("Total PDF Files", f"{len(all_pdfs):,}")
+
+        # 4. JSON Stats
+        m_col4.metric("Total JSON Files", len(all_files))
         
-        db_size = sum(f.stat().st_size for f in all_files) / (1024 * 1024)
-        col_m4.metric("Storage Used", f"{db_size:.2f} MB")
+        # 5. Storage Stats
+        json_size = sum(f.stat().st_size for f in all_files) / (1024 * 1024)
+        m_col5.metric("JSON Storage", f"{json_size:.2f} MB")
+        m_col6.metric("PDF Storage", f"{pdf_size:.2f} MB")
         
         st.divider()
         
@@ -290,7 +318,7 @@ with tab1:
                     st.error(data)
 
     with col2:
-        rekap_file = Path(__file__).parent / get_rekapitulasi_filename(reg_type)
+        rekap_file = Path(get_rekapitulasi_filename(reg_type))
         if rekap_file.exists():
             st.info(f"Existing rekap file found: `{rekap_file.name}`")
             if st.button("Step 2: Scrape All Details"):
@@ -326,7 +354,7 @@ with tab1:
                 st.success("Metadata extraction complete!")
                 
     with col4:
-        meta_file = Path(__file__).parent / '..' / 'db' / get_metadata_filename(reg_type)
+        meta_file = Path(get_metadata_filename(reg_type))
         if meta_file.exists():
             st.info(f"Enriched file: `{meta_file.name}`")
             with open(meta_file, 'r', encoding='utf-8') as f:
@@ -334,6 +362,36 @@ with tab1:
             st.write(f"Record count: {len(meta_data)}")
             if st.checkbox("Show Preview"):
                 st.json(meta_data[:2])
+
+    st.divider()
+    st.subheader("Step 4: PDF Downloader")
+    col5, col6 = st.columns([1, 1])
+    
+    with col5:
+        st.info("Download PDFs for the selected regulation type.")
+        is_prod = st.toggle("Production Mode (Full Download)", value=os.getenv("PRODUCTION", "false").lower() == "true")
+        dev_lim = st.number_input("Dev Limit (if not Production)", 1, 100, int(os.getenv("DEV_LIMIT", "5")))
+        
+        if st.button("Start Batch Download"):
+            from peraturan_go_id_batch_pdf_download import RegulationPDFDownloader
+            
+            async def run_pdf_download():
+                downloader = RegulationPDFDownloader(production=is_prod, dev_limit=dev_lim)
+                return await downloader.run_batch_download(specific_type=reg_type)
+            
+            with st.spinner(f"Downloading PDFs for {reg_type}..."):
+                downloaded, skipped, failed = asyncio.run(run_pdf_download())
+                st.success(f"Finished! Downloaded: {downloaded}, Skipped: {skipped}, Failed: {failed}")
+    
+    with col6:
+        type_pdf_dir = PDF_ROOT / reg_type
+        if type_pdf_dir.exists():
+            pdf_files = list(type_pdf_dir.glob("*.pdf"))
+            st.write(f"Files in `{reg_type}/` folder: **{len(pdf_files)}**")
+            if pdf_files:
+                st.write("Latest 5 files:")
+                for f in sorted(pdf_files, key=lambda x: x.stat().st_mtime, reverse=True)[:5]:
+                    st.text(f"📄 {f.name}")
 
 with tab2:
     st.header("Press Releases Scraper (General)")
@@ -401,6 +459,51 @@ with tab2:
                     content_results = asyncio.run(run_content())
                     st.success(f"Collected {len(content_results)} articles.")
                     st.dataframe(content_results[:10])
+        else:
+            st.info("Run Link Scraper first to generate the queue.")
+
+with tab3:
+    st.header("Press Releases Scraper (Komdigi)")
+    
+    col_k1, col_k2 = st.columns(2)
+    
+    with col_k1:
+        st.subheader("Step 1: Scrape Links")
+        max_pages_komdigi = st.number_input("Max Pages (Komdigi)", 1, 500, 1)
+        
+        if st.button("Crawl Komdigi Links"):
+            from siaran_pers_komdigi_links import KomdigiLinksScraper
+            
+            async def run_komdigi_links():
+                browser_config = BrowserConfig(headless=True)
+                async with AsyncWebCrawler(config=browser_config) as crawler:
+                    scraper = KomdigiLinksScraper(crawler)
+                    return await scraper.scrape_links(max_pages=max_pages_komdigi)
+            
+            with st.spinner("Crawling Komdigi links..."):
+                links_data = asyncio.run(run_komdigi_links())
+                total_items = sum(len(p.get('news_items', [])) for p in links_data)
+                st.success(f"Total entries available: {total_items}")
+                if links_data:
+                    st.json(links_data[0].get('news_items', [])[:5])
+
+    with col_k2:
+        st.subheader("Step 2: Scrape Content")
+        if (DB_ROOT / 'siaran_pers_komdigi_links.json').exists():
+            if st.button("Crawl Komdigi Content"):
+                from siaran_pers_komdigi import KomdigiContentScraper
+                
+                async def run_komdigi_content():
+                    browser_config = BrowserConfig(headless=True)
+                    async with AsyncWebCrawler(config=browser_config) as crawler:
+                        scraper = KomdigiContentScraper(crawler)
+                        return await scraper.scrape_content()
+                
+                with st.spinner("Extracting article content..."):
+                    content_data = asyncio.run(run_komdigi_content())
+                    st.success(f"Database now has {len(content_data)} Komdigi articles.")
+                    if content_data:
+                        st.dataframe(content_data[:10])
         else:
             st.info("Run Link Scraper first to generate the queue.")
 

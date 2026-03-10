@@ -2,7 +2,8 @@ import json
 import os
 
 def main():
-    file_path = r'siaran_pers_komdigi_links.json'
+    from config_general import DB_ROOT
+    file_path = str(DB_ROOT / 'siaran_pers_komdigi_links.json')
 
     if not os.path.exists(file_path):
         print(f"Error: {file_path} not found.")

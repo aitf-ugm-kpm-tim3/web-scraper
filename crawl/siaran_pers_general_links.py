@@ -22,16 +22,16 @@ class GeneralLinksScraper:
     def __init__(self, crawler):
         self.crawler = crawler
 
-    async def scrape_site_links(self, site_name: str, site_config: dict):
+    async def scrape_site_links(self, site_name: str, site_config: dict, existing_links_set: set):
         links_config = site_config["links"]
         url_template = links_config["url_template"]
         schema = links_config["schema"]
         
-        all_links = []
+        new_links = []
         page_num = 1
         consecutive_empty = 0
         
-        logger.info(f"--- Starting link crawl for {site_name} ---")
+        logger.info(f"--- Starting updatable link crawl for {site_name} ---")
         
         while page_num <= SCRAPER_CONFIG["max_pages"]:
             url = url_template.format(page=page_num)
@@ -63,8 +63,19 @@ class GeneralLinksScraper:
                 else:
                     consecutive_empty = 0
                     processed_items = self._process_items(news_items, url, site_name, page_num)
-                    all_links.extend(processed_items)
-                    logger.info(f"[{site_name}] Found {len(processed_items)} items.")
+                    
+                    found_existing = False
+                    for item in processed_items:
+                        if item['link'] in existing_links_set:
+                            logger.info(f"[{site_name}] Found already existing link: {item['link']}. Stopping crawl for this site.")
+                            found_existing = True
+                            break
+                        new_links.append(item)
+                    
+                    if found_existing:
+                        break
+                        
+                    logger.info(f"[{site_name}] Found {len(processed_items)} items on page {page_num}.")
                 
                 page_num += 1
                 await asyncio.sleep(SCRAPER_CONFIG["polite_delay"])
@@ -73,7 +84,7 @@ class GeneralLinksScraper:
                 logger.error(f"[{site_name}] Error on page {page_num}: {e}")
                 break
                 
-        return all_links
+        return new_links
 
     def _extract_news_items(self, data):
         """Extracts list of news items from nested extraction results."""
@@ -99,19 +110,32 @@ class GeneralLinksScraper:
 async def main():
     browser_config = BrowserConfig(headless=True, verbose=False)
     
+    existing_all_links = []
+    existing_links_set = set()
+    if os.path.exists(OUTPUT_LINKS_FILE):
+        with open(OUTPUT_LINKS_FILE, 'r', encoding='utf-8') as f:
+            existing_all_links = json.load(f)
+            existing_links_set = {item['link'] for item in existing_all_links}
+
     async with AsyncWebCrawler(config=browser_config) as crawler:
         scraper = GeneralLinksScraper(crawler)
-        all_results = []
+        new_results = []
         
         for site_name, site_config in GENERAL_SITES_CONFIG.items():
-            site_links = await scraper.scrape_site_links(site_name, site_config)
-            all_results.extend(site_links)
+            site_new_links = await scraper.scrape_site_links(site_name, site_config, existing_links_set)
+            new_results.extend(site_new_links)
             
-        logger.info(f"\nScraping complete! Total links: {len(all_results)}")
+        logger.info(f"\nLink crawl complete! Found {len(new_results)} new links.")
         
-        with open(OUTPUT_LINKS_FILE, 'w', encoding='utf-8') as f:
-            json.dump(all_results, f, indent=2, ensure_ascii=False)
-        logger.info(f"Results saved to {OUTPUT_LINKS_FILE}")
+        # Merge: New links at the top (usually news is chronological)
+        final_all_links = new_results + existing_all_links
+        
+        if new_results:
+            with open(OUTPUT_LINKS_FILE, 'w', encoding='utf-8') as f:
+                json.dump(final_all_links, f, indent=2, ensure_ascii=False)
+            logger.info(f"Updated results saved to {OUTPUT_LINKS_FILE}")
+        else:
+            logger.info("No new links found. Output file remains unchanged.")
 
 if __name__ == "__main__":
     asyncio.run(main())

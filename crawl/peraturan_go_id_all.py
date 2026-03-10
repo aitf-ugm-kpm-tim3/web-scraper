@@ -10,23 +10,34 @@ async def main():
     async with AsyncWebCrawler() as crawler:
         for p in PERATURAN_CONFIG.keys():
             print(f"\nProcessing regulation type: {p}")
-            # 1. Load the rekapitulasi data
-            # Assuming the JSON files are in the same directory or adjust path as needed
+            
+            # 1. Load the rekapitulasi data (path from config)
             rekapitulasi_path = Path(get_rekapitulasi_filename(p))
             if not rekapitulasi_path.exists():
-                # Fallback to ../db/ if not found in current dir
-                db_path = Path('..') / 'db' / get_rekapitulasi_filename(p)
-                if db_path.exists():
-                    rekapitulasi_path = db_path
-                else:
-                    print(f"Error: {rekapitulasi_path} (or {db_path}) not found. Skipping {p}.")
-                    continue
+                print(f"Error: {rekapitulasi_path} not found. Skipping {p}.")
+                continue
 
             with open(rekapitulasi_path, 'r', encoding='utf-8') as f:
                 rekap_data = json.load(f)
 
-            # 2. Generate URLs
-            urls = []
+            # 2. Load existing results for updatable crawling
+            output_path = get_all_extracted_filename(p)
+            all_results = []
+            existing_urls = set()
+            if os.path.exists(output_path):
+                print(f"Loading existing data from {output_path}...")
+                with open(output_path, 'r', encoding='utf-8') as f:
+                    all_results = json.load(f)
+                    # We assume 'link' or similar identifying field exists
+                    # Actually, the schema doesn't have a direct 'link' field saved, 
+                    # but we can reconstruct it from nomor/tahun/slug if needed
+                    # OR we can add a 'scraped_url' field when saving.
+                    for item in all_results:
+                        if 'scraped_url' in item:
+                            existing_urls.add(item['scraped_url'])
+
+            # 3. Generate candidate URLs
+            candidate_urls = []
             for item in rekap_data:
                 tahun = item.get('tahun')
                 try:
@@ -34,13 +45,18 @@ async def main():
                 except (ValueError, TypeError):
                     jumlah = 0
                 for nomor in range(1, jumlah + 1):
-                    # Use p directly as the slug (matches standardized keys in config.py)
                     url = f"https://peraturan.go.id/id/{p}-no-{nomor}-tahun-{tahun}"
-                    urls.append(url)
+                    candidate_urls.append(url)
 
-            print(f"Total URLs to crawl for {p}: {len(urls)}")
+            # Filter out already crawled URLs
+            urls_to_crawl = [u for u in candidate_urls if u not in existing_urls]
+            print(f"Total: {len(candidate_urls)} | Already crawled: {len(existing_urls)} | To crawl: {len(urls_to_crawl)}")
 
-            # 3. Define the extraction schema
+            if not urls_to_crawl:
+                print(f"All items for {p} are already crawled.")
+                continue
+
+            # 4. Define the extraction schema (same as before)
             schema = {
                 "name": "Peraturan",
                 "baseSelector": "section#description",
@@ -70,13 +86,11 @@ async def main():
                 extraction_strategy=extraction_strategy
             )
 
-            # 4. Crawl the URLs
-            all_results = []
+            # 5. Crawl the missing URLs
             batch_size = 10 
-
-            for i in range(0, len(urls), batch_size):
-                batch_urls = urls[i:i + batch_size]
-                print(f"[{p}] Crawling batch {i // batch_size + 1} ({len(batch_urls)} URLs)...")
+            for i in range(0, len(urls_to_crawl), batch_size):
+                batch_urls = urls_to_crawl[i:i + batch_size]
+                print(f"[{p}] Crawling batch {i // batch_size + 1}/{len(urls_to_crawl)//batch_size + 1}")
 
                 results = await crawler.arun_many(batch_urls, config=run_config)
 
@@ -84,26 +98,20 @@ async def main():
                     if result.success:
                         try:
                             data = json.loads(result.extracted_content)
-                            if isinstance(data, list):
-                                all_results.extend(data)
-                            else:
-                                all_results.append(data)
+                            item = data[0] if isinstance(data, list) and data else (data if data else {})
+                            if item:
+                                item['scraped_url'] = result.url
+                                all_results.append(item)
                         except json.JSONDecodeError:
                             print(f"Failed to decode JSON for {result.url}")
                     else:
                         print(f"Failed to crawl {result.url}: {result.error_message}")
 
                 # Intermediate save
-                partial_output = Path(f'peraturan_go_id_all_{p}_extracted_partial.json')
-                with open(partial_output, 'w', encoding='utf-8') as f:
+                with open(output_path, 'w', encoding='utf-8') as f:
                     json.dump(all_results, f, indent=2, ensure_ascii=False)
 
-            # 5. Save all results for this type
-            output_path = Path(get_all_extracted_filename(p))
-            with open(output_path, 'w', encoding='utf-8') as f:
-                json.dump(all_results, f, indent=2, ensure_ascii=False)
-
-            print(f"Crawling complete for {p}. Saved {len(all_results)} records to {output_path}")
+            print(f"Crawling complete for {p}. Total records: {len(all_results)}")
 
 if __name__ == "__main__":
     asyncio.run(main())

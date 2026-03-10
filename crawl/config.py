@@ -1,5 +1,14 @@
 from pathlib import Path
 
+# Project directories
+PROJECT_ROOT = Path(__file__).parent.parent
+DB_ROOT = PROJECT_ROOT / 'db'
+PDF_ROOT = PROJECT_ROOT / 'pdf_downloads'
+
+# Ensure directories exist
+DB_ROOT.mkdir(parents=True, exist_ok=True)
+PDF_ROOT.mkdir(parents=True, exist_ok=True)
+
 # Central configuration for Indonesian regulations (peraturan.go.id)
 # Key: The identifier used for filenames and URL slugs (where applicable)
 # Value: The relative path for the rekapitulasi page
@@ -19,12 +28,12 @@ PERATURAN_CONFIG = {
 
 def get_rekapitulasi_filename(name):
     """Returns the filename for a rekapitulasi JSON file."""
-    return f"peraturan_go_id_rekapitulasi_{name}.json"
+    return str(DB_ROOT / f"peraturan_go_id_rekapitulasi_{name}.json")
 
 def get_all_extracted_filename(name):
     """Returns the filename for an extracted 'all' JSON file."""
-    return f"peraturan_go_id_all_{name}.json"
+    return str(DB_ROOT / f"peraturan_go_id_all_{name}.json")
 
 def get_metadata_filename(name):
     """Returns the filename for a metadata JSON file."""
-    return f"peraturan_go_id_metadata_{name}.json"
+    return str(DB_ROOT / f"peraturan_go_id_metadata_{name}.json")

@@ -93,8 +93,8 @@ async def main():
                                 # Fallback if conversion fails (keep as original or None)
                                 pass
 
-                # Use an absolute path for the output file to be safe, or relative to the script
-                output_path = Path(__file__).parent / get_rekapitulasi_filename(name)
+                # Output file (absolute path from config)
+                output_path = get_rekapitulasi_filename(name)
                 with open(output_path, 'w', encoding='utf-8') as f:
                     json.dump(data, f, indent=2, ensure_ascii=False)
                 print(f"Data saved to {output_path}")

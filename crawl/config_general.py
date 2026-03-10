@@ -1,3 +1,12 @@
+from pathlib import Path
+
+# Project directories (consistent with config.py)
+PROJECT_ROOT = Path(__file__).parent.parent
+DB_ROOT = PROJECT_ROOT / 'db'
+
+# Ensure directories exist
+DB_ROOT.mkdir(parents=True, exist_ok=True)
+
 # Configuration for general press releases (BAPPENAS, BGN, ESDM)
 
 GENERAL_SITES_CONFIG = {
@@ -111,5 +120,5 @@ SCRAPER_CONFIG = {
     "wait_timeout": 30000
 }
 
-OUTPUT_LINKS_FILE = "siaran_pers_general_links.json"
-OUTPUT_CONTENT_FILE = "siaran_pers_general.json"
+OUTPUT_LINKS_FILE = str(DB_ROOT / "siaran_pers_general_links.json")
+OUTPUT_CONTENT_FILE = str(DB_ROOT / "siaran_pers_general.json")

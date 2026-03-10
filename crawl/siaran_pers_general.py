@@ -79,29 +79,46 @@ async def main():
     with open(OUTPUT_LINKS_FILE, 'r', encoding='utf-8') as f:
         news_items = json.load(f)
     
-    logger.info(f"Total articles to crawl: {len(news_items)}")
+    # Load existing content for updatable crawling
+    existing_content = []
+    scraped_links = set()
+    if os.path.exists(OUTPUT_CONTENT_FILE):
+        logger.info(f"Loading existing content from {OUTPUT_CONTENT_FILE}...")
+        with open(OUTPUT_CONTENT_FILE, 'r', encoding='utf-8') as f:
+            existing_content = json.load(f)
+            scraped_links = {item['link'] for item in existing_content}
+
+    # Filter to only new items
+    items_to_crawl = [item for item in news_items if item['link'] not in scraped_links]
     
+    logger.info(f"Total links: {len(news_items)} | Already scraped: {len(scraped_links)} | To crawl: {len(items_to_crawl)}")
+    
+    if not items_to_crawl:
+        logger.info("All articles are already scraped.")
+        return
+
     browser_config = BrowserConfig(headless=True)
-    
     async with AsyncWebCrawler(config=browser_config) as crawler:
         scraper = GeneralContentScraper(crawler)
         
         tasks = []
-        for i, item in enumerate(news_items):
+        for i, item in enumerate(items_to_crawl):
             source = item.get('source')
             if source in GENERAL_SITES_CONFIG:
-                tasks.append(scraper.scrape_article(item, GENERAL_SITES_CONFIG[source], i, len(news_items)))
+                tasks.append(scraper.scrape_article(item, GENERAL_SITES_CONFIG[source], i, len(items_to_crawl)))
             else:
                 logger.warning(f"No config for source: {source}")
         
         results = await asyncio.gather(*tasks)
-        # Filter out failed crawls
         valid_results = [r for r in results if r is not None]
     
-    with open(OUTPUT_CONTENT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(valid_results, f, indent=2, ensure_ascii=False)
+    # Merge: New results at the top
+    final_content = valid_results + existing_content
     
-    logger.info(f"\nScraping complete! Collected: {len(valid_results)}")
+    with open(OUTPUT_CONTENT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(final_content, f, indent=2, ensure_ascii=False)
+    
+    logger.info(f"\nScraping complete! Added {len(valid_results)} new articles.")
     logger.info(f"Results saved to: {OUTPUT_CONTENT_FILE}")
 
 if __name__ == "__main__":
