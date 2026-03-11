@@ -1,0 +1,62 @@
+[
+  {
+    "tahun": 2026,
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2024,
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2021,
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2016,
+    "jumlah_peraturan": 14,
+    "berlaku": 12,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 2015,
+    "jumlah_peraturan": 3,
+    "berlaku": 2,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2014,
+    "jumlah_peraturan": 23,
+    "berlaku": 22,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2013,
+    "jumlah_peraturan": 17,
+    "berlaku": 16,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2012,
+    "jumlah_peraturan": 15,
+    "berlaku": 15,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2011,
+    "jumlah_peraturan": 19,
+    "berlaku": 17,
+    "tidak_berlaku": 2
+  },
+  {
+    "tahun": 2010,
+    "jumlah_peraturan": 15,
+    "berlaku": 13,
+    "tidak_berlaku": 2
+  }
+]

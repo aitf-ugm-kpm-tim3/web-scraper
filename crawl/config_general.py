@@ -183,11 +183,85 @@ GENERAL_SITES_CONFIG = {
             },
             "wait_for": "article.blog-post"
         }
+    },
+    "EKON": {
+        "links": {
+            "url_template": "https://www.ekon.go.id/publikasi/1/siaran-pers?page={page}",
+            "schema": {
+                "name": "EKON_LINKS",
+                "baseSelector": "body",
+                "fields": [
+                    {
+                        "name": "page", 
+                        "selector": "ul.pagination li.active", 
+                        "type": "text"
+                    },
+                    {
+                        "name": "news_items",
+                        "selector": "div.row.m-0.mb-3",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "div.col-md-8 a", "type": "text"},
+                            {"name": "link", "selector": "div.col-md-8 a", "type": "attribute", "attribute": "href"},
+                        ]
+                    }
+                ]
+            },
+            "wait_for": "div.row.m-0.mb-3"
+        },
+        "detail": {
+            "schema": {
+                "name": "EKON_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "span.mb-3", "type": "text"},
+                    {"name": "text", "selector": "div.col-12.mt-3.p-0", "type": "text"}
+                ]
+            },
+            "wait_for": "div.col-12.mt-3.p-0"
+        }
+    },
+    "KEMENSOS": {
+        "links": {
+            "url_template": "https://kemensos.go.id/berita-terkini/{page}",
+            "schema": {
+                "name": "KEMENSOS_LINKS",
+                "baseSelector": "body",
+                "fields": [
+                    {
+                        "name": "page", 
+                        "selector": "ul.pagination li.active", 
+                        "type": "text"
+                    },
+                    {
+                        "name": "news_items",
+                        "selector": "div.col-lg-4.col-md-12.pb-5",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ]
+                    }
+                ]
+            },
+            "wait_for": "div.col-lg-4.col-md-12.pb-5"
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMENSOS_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "div.container.mt-3.mb-2", "type": "text"},
+                    {"name": "text", "selector": "h5.container.text-content.text-justify", "type": "text"}
+                ]
+            },
+            "wait_for": "h5.container.text-content.text-justify"
+        }
     }
 }
 
 SCRAPER_CONFIG = {
-    "max_pages": 3,
+    "max_pages": 50,
     "max_consecutive_empty": 1,
     "concurrency_limit": 5,
     "polite_delay": 0.5,

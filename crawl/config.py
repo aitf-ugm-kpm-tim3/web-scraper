@@ -105,7 +105,7 @@ PERATURAN_CONFIG = {
     "peraturan-bawaslu": "perban/peraturan-bawaslu",
     "peraturan-bapeten": "perban/peraturan-bapeten",
     "peraturan-bpkp": "perban/peraturan-bpkp",
-    "peraturan-bpjs": "perban/peraturan-bpjs-kesehatan",
+    "peraturan-bpjs-kesehatan": "perban/peraturan-bpjs-kesehatan",
     "peraturan-bpn": "perban/peraturan-bpn",
     "peraturan-bps": "perban/peraturan-bps",
     "peraturan-basarnas": "perban/peraturan-basarnas",
