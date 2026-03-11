@@ -145,7 +145,7 @@ PERATURAN_CONFIG = {
     "peraturan-kip": "perban/peraturan-kip",
     "peraturan-lpei": "perban/peraturan-lpei",
     "peraturan-kasn": "perban/peraturan-kasn",
-    "peraturan-bpjs": "perban/peraturan-bpjs-ketenagakerjaan",
+    "peraturan-bpjs-ketenagakerjaan": "perban/peraturan-bpjs-ketenagakerjaan",
     "peraturan-bppt": "perban/peraturan-bppt",
     "peraturan-bakamla": "perban/peraturan-bakamla",
     "peraturan-bpip": "perban/peraturan-bpip",

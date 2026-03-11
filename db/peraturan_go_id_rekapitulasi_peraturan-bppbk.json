@@ -1,0 +1,20 @@
+[
+  {
+    "tahun": 2018,
+    "jumlah_peraturan": 4,
+    "berlaku": 4,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2017,
+    "jumlah_peraturan": 8,
+    "berlaku": 8,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2016,
+    "jumlah_peraturan": 3,
+    "berlaku": 3,
+    "tidak_berlaku": 0
+  }
+]

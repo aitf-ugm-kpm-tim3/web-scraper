@@ -1,0 +1,44 @@
+[
+  {
+    "tahun": 2019,
+    "jumlah_peraturan": 36,
+    "berlaku": 33,
+    "tidak_berlaku": 3
+  },
+  {
+    "tahun": 2018,
+    "jumlah_peraturan": 57,
+    "berlaku": 46,
+    "tidak_berlaku": 11
+  },
+  {
+    "tahun": 2017,
+    "jumlah_peraturan": 91,
+    "berlaku": 87,
+    "tidak_berlaku": 4
+  },
+  {
+    "tahun": 2016,
+    "jumlah_peraturan": 126,
+    "berlaku": 110,
+    "tidak_berlaku": 16
+  },
+  {
+    "tahun": 2015,
+    "jumlah_peraturan": 46,
+    "berlaku": 31,
+    "tidak_berlaku": 15
+  },
+  {
+    "tahun": 2014,
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2010,
+    "jumlah_peraturan": 1,
+    "berlaku": 1,
+    "tidak_berlaku": 0
+  }
+]

@@ -11,6 +11,8 @@ import io
 from urllib.parse import urljoin
 from pypdf import PdfReader
 from dotenv import load_dotenv
+import plotly.express as px
+import pandas as pd
 
 # Load environment variables
 load_dotenv(Path(__file__).parent.parent / ".env")
@@ -275,14 +277,20 @@ with tab0:
         with c1:
             st.subheader("Regulations by Type")
             if reg_counts:
-                st.bar_chart(reg_counts)
+                df_reg = pd.DataFrame(list(reg_counts.items()), columns=['Type', 'Count'])
+                df_reg['Root'] = 'Regulations'
+                fig_reg = px.treemap(df_reg, path=['Root', 'Type'], values='Count')
+                st.plotly_chart(fig_reg, width='stretch')
             else:
                 st.info("No regulation data found in /db")
                 
         with c2:
             st.subheader("News by Source")
             if news_by_source:
-                st.bar_chart(news_by_source)
+                df_news = pd.DataFrame(list(news_by_source.items()), columns=['Source', 'Count'])
+                df_news['Root'] = 'News'
+                fig_news = px.treemap(df_news, path=['Root', 'Source'], values='Count')
+                st.plotly_chart(fig_news, width='stretch')
             else:
                 st.info("No news data found in /db")
                 

@@ -1,0 +1,26 @@
+[
+  {
+    "tahun": 2024,
+    "jumlah_peraturan": 68,
+    "berlaku": 68,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2023,
+    "jumlah_peraturan": 53,
+    "berlaku": 53,
+    "tidak_berlaku": 0
+  },
+  {
+    "tahun": 2022,
+    "jumlah_peraturan": 63,
+    "berlaku": 62,
+    "tidak_berlaku": 1
+  },
+  {
+    "tahun": 2021,
+    "jumlah_peraturan": 29,
+    "berlaku": 27,
+    "tidak_berlaku": 2
+  }
+]
