@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-from config import PERATURAN_CONFIG, get_all_extracted_filename, PDF_ROOT
+from config import PERATURAN_CONFIG, get_all_extracted_filename, PDF_ROOT, DB_ROOT
 
 class RegulationPDFDownloader:
     def __init__(self, production=False, dev_limit=5):
@@ -56,8 +56,11 @@ class RegulationPDFDownloader:
             tasks = []
             
             for reg_type in types_to_process:
-                json_filename = get_all_extracted_filename(reg_type)
-                json_path = Path(json_filename)
+                if reg_type == "perda":
+                    json_path = DB_ROOT / "peraturan_go_id_perda.json"
+                else:
+                    json_filename = get_all_extracted_filename(reg_type)
+                    json_path = Path(json_filename)
                 
                 if not json_path.exists():
                     continue
