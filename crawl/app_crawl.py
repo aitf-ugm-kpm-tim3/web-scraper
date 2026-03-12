@@ -197,7 +197,7 @@ st.markdown("Automated scraping for regulations and press releases.")
 
 setup_log_capture()
 
-tab0, tab1, tab2, tab3 = st.tabs(["📊 Dashboard & Stats", "📑📜 Peraturan Go Id", "📰 Siaran Pers General", "🏛️ Siaran Pers Komdigi"])
+tab0, tab1, tab1b, tab2, tab3 = st.tabs(["📊 Dashboard & Stats", "📑📜 Peraturan Go Id", "📑 Perda Explorer", "📰 Siaran Pers General", "🏛️ Siaran Pers Komdigi"])
 
 with tab0:
     st.header("Data Overview & Statistics")
@@ -211,7 +211,7 @@ with tab0:
         m_col4, m_col5, m_col6 = st.columns(3)
         
         # 1. Regulation Stats
-        reg_files = [f for f in all_files if "peraturan_go_id_all" in f.name]
+        reg_files = [f for f in all_files if "peraturan_go_id_all" in f.name or f.name == "peraturan_go_id_perda.json"]
         total_regs, total_docs = 0, 0
         reg_counts = {}
         for f in reg_files:
@@ -225,7 +225,7 @@ with tab0:
                             total_docs += 1
                             
                     type_key = f.name.split('_')[-1].replace('.json', '')
-                    reg_counts[type_key] = len(data)
+                    reg_counts[type_key] = reg_counts.get(type_key, 0) + len(data)
             except: pass
             
         progress_pct = (total_regs / TOTAL_REGULATIONS_GOAL) * 100 if total_regs > 0 else 0
@@ -405,6 +405,58 @@ with tab1:
                 st.write("Latest 5 files:")
                 for f in sorted(pdf_files, key=lambda x: x.stat().st_mtime, reverse=True)[:5]:
                     st.text(f"📄 {f.name}")
+
+with tab1b:
+    st.header("Peraturan Daerah Scraper (peraturan.go.id/perda)")
+    
+    col_perda1, col_perda2 = st.columns([1, 1])
+    
+    with col_perda1:
+        st.subheader("Step 1: Scrape Perda Links")
+        start_page = st.number_input("Start Page", 1, 1500, 1)
+        end_page = st.number_input("End Page", 1, 1500, 5)
+        
+        if st.button("Start Scraping Links"):
+            from peraturan_go_id_perda_links import run_scraper as run_perda_links
+            
+            with st.spinner(f"Scraping links from page {start_page} to {end_page}..."):
+                status_holder = st.empty()
+                prog_bar = st.progress(0)
+                
+                async def do_scrape_links():
+                    return await run_perda_links(start_page, end_page, status_holder, prog_bar)
+                    
+                links_data = asyncio.run(do_scrape_links())
+                st.success(f"Successfully collected {len(links_data)} link entries.")
+                st.dataframe(links_data)
+                
+    with col_perda2:
+        st.subheader("Step 2: Scrape Perda Details")
+        
+        input_perda_json = DB_ROOT / 'peraturan_go_id_perda_links.json'
+        if input_perda_json.exists():
+            st.info(f"Link list found. Proceed to detail extraction.")
+            
+            if st.button("Start Detail Scraping"):
+                from peraturan_go_id_perda import run_perda_detail_scraper
+                
+                with st.spinner("Scraping details..."):
+                    status_holder_det = st.empty()
+                    prog_bar_det = st.progress(0)
+                    
+                    async def do_scrapedet():
+                        return await run_perda_detail_scraper(status_holder_det, prog_bar_det)
+                        
+                    success, msg, details_data = asyncio.run(do_scrapedet())
+                    
+                    if success:
+                        st.success(msg)
+                        if details_data:
+                            st.dataframe(details_data[:5])
+                    else:
+                        st.error(msg)
+        else:
+            st.warning("Please run Step 1 (Link Scraper) first to generate the list of URLs.")
 
 with tab2:
     st.header("Press Releases Scraper (General)")
