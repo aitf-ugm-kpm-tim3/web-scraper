@@ -471,7 +471,7 @@ with tab2:
     
     with col_l:
         st.subheader("Step 1: Scrape Links")
-        max_pages = st.number_input("Max Pages per Site", 1, 10, 1)
+        max_pages = st.number_input("Max Pages per Site", 1, 300, 1)
         
         if st.button("Crawl Link List"):
             from siaran_pers_general_links import GeneralLinksScraper
@@ -523,22 +523,73 @@ with tab2:
                     with open(OUTPUT_LINKS_FILE, 'r', encoding='utf-8') as f:
                         news_items = json.load(f)
                     
-                    st.write(f"Total articles: {len(news_items)}")
+                    # Load existing content for updatable crawling
+                    existing_content = []
+                    scraped_links = set()
+                    if os.path.exists(OUTPUT_CONTENT_FILE):
+                        try:
+                            with open(OUTPUT_CONTENT_FILE, 'r', encoding='utf-8') as f:
+                                existing_content = json.load(f)
+                                scraped_links = {item['link'] for item in existing_content if 'link' in item}
+                            st.info(f"Loaded {len(existing_content)} existing articles.")
+                        except Exception as e:
+                            st.error(f"Could not load existing output: {e}")
+
+                    # Filter to only new items and selected sites
+                    items_to_crawl = [
+                        item for item in news_items 
+                        if item.get('link') not in scraped_links and item.get('source') in selected_sites
+                    ]
+                    total_to_crawl = len(items_to_crawl)
+                    
+                    st.write(f"Total links to crawl: {total_to_crawl} (Total in list: {len(news_items)})")
+                    
+                    if total_to_crawl == 0:
+                        st.success("All articles for selected sites are already scraped.")
+                        return existing_content
+
                     browser_config = BrowserConfig(headless=True)
                     async with AsyncWebCrawler(config=browser_config) as crawler:
                         scraper = GeneralContentScraper(crawler)
-                        tasks = []
-                        for i, item in enumerate(news_items):
-                            source = item.get('source')
-                            if source in selected_sites and source in GENERAL_SITES_CONFIG:
-                                tasks.append(scraper.scrape_article(item, GENERAL_SITES_CONFIG[source], i, len(news_items)))
                         
-                        results = await asyncio.gather(*tasks)
-                        valid_results = [r for r in results if r is not None]
+                        batch_size = 10
+                        progress_bar = st.progress(0)
+                        status_text = st.empty()
                         
-                        with open(OUTPUT_CONTENT_FILE, 'w', encoding='utf-8') as f:
-                            json.dump(valid_results, f, indent=2, ensure_ascii=False)
-                        return valid_results
+                        for i in range(0, total_to_crawl, batch_size):
+                            batch = items_to_crawl[i:i + batch_size]
+                            current_batch_num = i // batch_size + 1
+                            total_batches = (total_to_crawl + batch_size - 1) // batch_size
+                            
+                            status_text.text(f"Processing batch {current_batch_num}/{total_batches} ({len(batch)} items)...")
+                            
+                            tasks = []
+                            for j, item in enumerate(batch):
+                                source = item.get('source')
+                                if source in GENERAL_SITES_CONFIG:
+                                    tasks.append(scraper.scrape_article(item, GENERAL_SITES_CONFIG[source], i + j, total_to_crawl))
+                                else:
+                                    logger.warning(f"No config for source: {source}")
+                            
+                            results = await asyncio.gather(*tasks)
+                            valid_results = [r for r in results if r is not None]
+                            
+                            if valid_results:
+                                # Merge: New results at the top
+                                existing_content = valid_results + existing_content
+                                
+                                # Save checkpoint after each batch
+                                with open(OUTPUT_CONTENT_FILE, 'w', encoding='utf-8') as f:
+                                    json.dump(existing_content, f, indent=2, ensure_ascii=False)
+                            
+                            progress_bar.progress(min((i + batch_size) / total_to_crawl, 1.0))
+                            
+                            # Polite delay between batches
+                            if i + batch_size < total_to_crawl:
+                                await asyncio.sleep(1)
+
+                        status_text.text("Scraping complete!")
+                        return existing_content
 
                 with st.spinner("Extracting article body text..."):
                     content_results = asyncio.run(run_content())

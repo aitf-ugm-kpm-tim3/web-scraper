@@ -25,16 +25,16 @@ OUTPUT_FILE = DB_ROOT / 'wikipedia.json'
 # Schema for Wikipedia Article Extraction
 schema = {
     "name": "WikipediaArticle",
-    "baseSelector": "div#content",
+    "baseSelector": "body",
     "fields": [
         {
             "name": "title",
-            "selector": "h1#firstHeading",
+            "selector": "span.mw-page-title-main",
             "type": "text"
         },
         {
-            "name": "content",
-            "selector": "div.mw-parser-output",
+            "name": "text",
+            "selector": "div#mw-content-text",
             "type": "text"
         },
         {

@@ -22,8 +22,8 @@ INVALID_PREFIX = (
     "/wiki/Bantuan:",
     "/wiki/Portal:",
     "/wiki/Istimewa:",
-    "/wiki/Kategori:Semua_daerah_tingkat_IV_di_Indonesia",
-    "/w/index.php?title=Kategori:Semua_daerah_tingkat_IV_di_Indonesia"
+    "/wiki/Templat:",
+    "/w/index.php?title=Kategori:"
 )
 
 DB_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "db")

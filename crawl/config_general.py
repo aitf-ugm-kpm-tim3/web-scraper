@@ -257,14 +257,126 @@ GENERAL_SITES_CONFIG = {
             },
             "wait_for": "h5.container.text-content.text-justify"
         }
+    },
+    "POLRI": {
+        "links": {
+            "url_template": "https://humas.polri.go.id/news/all?page={page}",
+            "schema": {
+                "name": "POLRI_LINKS",
+                "baseSelector": "div.bg-white.border-b-1",
+                "fields": [
+                    {
+                        "name": "page", 
+                        "selector": "nav", 
+                        "type": "attribute", 
+                        "attribute": "data-active-page"
+                    },
+                    {
+                        "name": "news_items",
+                        "selector": "section#content > a:nth-child(-n+9)",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "div.font-semibold.text-lg", "type": "text"},
+                            {"name": "link", "type": "attribute", "attribute": "href"},
+                        ]
+                    }
+                ]
+            },
+            "wait_for": "section#content"
+        },
+        "detail": {
+            "schema": {
+                "name": "POLRI_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "div.flex.flex-row.items-center.gap-1:nth-child(2) p", "type": "text"},
+                    {"name": "text", "selector": "div.text-sm.text-justify.space-y-4", "type": "text"}
+                ]
+            },
+            "wait_for": "div.text-sm.text-justify.space-y-4"
+        }
+    },
+    "SETKAB": {
+        "links": {
+            "url_template": "https://setkab.go.id/category/berita/page/{page}/",
+            "schema": {
+                "name": "SETKAB_LINKS",
+                "baseSelector": "body",
+                "fields": [
+                    {
+                        "name": "page", 
+                        "selector": "div.nav-links span.page-numbers.current", 
+                        "type": "text"
+                    },
+                    {
+                        "name": "news_items",
+                        "selector": "article.card_search",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a h2", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ]
+                    }
+                ]
+            },
+            "wait_for": "article.card_search"
+        },
+        "detail": {
+            "schema": {
+                "name": "SETKAB_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "div.info.fl:nth-child(2)", "type": "text"},
+                    {"name": "text", "selector": "div.reading_text", "type": "text"}
+                ]
+            },
+            "wait_for": "div.reading_text"
+        }
+    },
+    "KEMHAN": {
+        "links": {
+            "url_template": "https://www.kemhan.go.id/category/berita/page/{page}",
+            "schema": {
+                "name": "KEMHAN_LINKS",
+                "baseSelector": "body",
+                "fields": [
+                    {
+                        "name": "page", 
+                        "selector": "div.paging ul li.active", 
+                        "type": "text"
+                    },
+                    {
+                        "name": "news_items",
+                        "selector": "ul.news-index li",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h4", "type": "text"},
+                            {"name": "link", "selector": "h4 a", "type": "attribute", "attribute": "href"},
+                        ]
+                    }
+                ]
+            },
+            "wait_for": "ul.news-index"
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMHAN_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "small", "type": "text"},
+                    {"name": "text", "selector": "div.def-page.article", "type": "text"}
+                ]
+            },
+            "wait_for": "div.def-page.article"
+        }
     }
 }
 
 SCRAPER_CONFIG = {
-    "max_pages": 50,
-    "max_consecutive_empty": 1,
+    "max_pages": 300,
+    "max_consecutive_empty": 5,
     "concurrency_limit": 5,
-    "polite_delay": 0.5,
+    "polite_delay": 0.5,    
     "wait_timeout": 30000
 }
 

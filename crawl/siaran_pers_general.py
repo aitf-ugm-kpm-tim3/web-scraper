@@ -84,16 +84,21 @@ async def main():
     scraped_links = set()
     if os.path.exists(OUTPUT_CONTENT_FILE):
         logger.info(f"Loading existing content from {OUTPUT_CONTENT_FILE}...")
-        with open(OUTPUT_CONTENT_FILE, 'r', encoding='utf-8') as f:
-            existing_content = json.load(f)
-            scraped_links = {item['link'] for item in existing_content}
+        try:
+            with open(OUTPUT_CONTENT_FILE, 'r', encoding='utf-8') as f:
+                existing_content = json.load(f)
+                scraped_links = {item['link'] for item in existing_content if 'link' in item}
+            logger.info(f"Loaded {len(existing_content)} existing articles.")
+        except Exception as e:
+            logger.error(f"Could not load existing output: {e}")
 
     # Filter to only new items
-    items_to_crawl = [item for item in news_items if item['link'] not in scraped_links]
+    items_to_crawl = [item for item in news_items if item.get('link') not in scraped_links]
+    total_to_crawl = len(items_to_crawl)
     
-    logger.info(f"Total links: {len(news_items)} | Already scraped: {len(scraped_links)} | To crawl: {len(items_to_crawl)}")
+    logger.info(f"Total links: {len(news_items)} | Already scraped: {len(scraped_links)} | To crawl: {total_to_crawl}")
     
-    if not items_to_crawl:
+    if total_to_crawl == 0:
         logger.info("All articles are already scraped.")
         return
 
@@ -101,25 +106,40 @@ async def main():
     async with AsyncWebCrawler(config=browser_config) as crawler:
         scraper = GeneralContentScraper(crawler)
         
-        tasks = []
-        for i, item in enumerate(items_to_crawl):
-            source = item.get('source')
-            if source in GENERAL_SITES_CONFIG:
-                tasks.append(scraper.scrape_article(item, GENERAL_SITES_CONFIG[source], i, len(items_to_crawl)))
-            else:
-                logger.warning(f"No config for source: {source}")
-        
-        results = await asyncio.gather(*tasks)
-        valid_results = [r for r in results if r is not None]
-    
-    # Merge: New results at the top
-    final_content = valid_results + existing_content
-    
-    with open(OUTPUT_CONTENT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(final_content, f, indent=2, ensure_ascii=False)
-    
-    logger.info(f"\nScraping complete! Added {len(valid_results)} new articles.")
-    logger.info(f"Results saved to: {OUTPUT_CONTENT_FILE}")
+        batch_size = 10
+        for i in range(0, total_to_crawl, batch_size):
+            batch = items_to_crawl[i:i + batch_size]
+            current_batch_num = i // batch_size + 1
+            total_batches = (total_to_crawl + batch_size - 1) // batch_size
+            
+            logger.info(f"Processing batch {current_batch_num}/{total_batches} ({len(batch)} items)")
+            
+            tasks = []
+            for j, item in enumerate(batch):
+                source = item.get('source')
+                if source in GENERAL_SITES_CONFIG:
+                    tasks.append(scraper.scrape_article(item, GENERAL_SITES_CONFIG[source], i + j, total_to_crawl))
+                else:
+                    logger.warning(f"No config for source: {source}")
+            
+            results = await asyncio.gather(*tasks)
+            valid_results = [r for r in results if r is not None]
+            
+            if valid_results:
+                # Merge: New results at the top
+                existing_content = valid_results + existing_content
+                
+                # Save checkpoint after each batch
+                with open(OUTPUT_CONTENT_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(existing_content, f, indent=2, ensure_ascii=False)
+                
+                logger.info(f"Batch {current_batch_num} saved. Added {len(valid_results)} new articles. Total: {len(existing_content)}")
+            
+            # Polite delay between batches
+            if i + batch_size < total_to_crawl:
+                await asyncio.sleep(1)
+
+    logger.info(f"\nScraping complete! Results saved to: {OUTPUT_CONTENT_FILE}")
 
 if __name__ == "__main__":
     asyncio.run(main())
