@@ -69,19 +69,19 @@ with open(r'd:\1_projects\aitf-ugm-tim3\db\siaran_pers_komdigi_all.json', 'r', e
         upsert_url(link, item.get('title'), 'KOMDIGI')
         insert_text(link, item.get('text'), item.get('date'))
 
-# 5. wikipedia_links
-with open(r'd:\1_projects\aitf-ugm-tim3\db\wikipedia_links.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
-    for link in track(data, description="wikipedia_links"):
-        title = link.replace('https://id.wikipedia.org/wiki/', '').replace('_', ' ')
-        upsert_url(link, title, 'WIKIPEDIA')
+# # 5. wikipedia_links
+# with open(r'd:\1_projects\aitf-ugm-tim3\db\wikipedia_links.json', 'r', encoding='utf-8') as f:
+#     data = json.load(f)
+#     for link in track(data, description="wikipedia_links"):
+#         title = link.replace('https://id.wikipedia.org/wiki/', '').replace('_', ' ')
+#         upsert_url(link, title, 'WIKIPEDIA')
 
-# 6. wikipedia
-with open(r'd:\1_projects\aitf-ugm-tim3\db\wikipedia.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
-    for item in track(data, description="wikipedia"):
-        upsert_url(item.get('url'), item.get('title'), 'WIKIPEDIA')
-        insert_text(item.get('url'), item.get('text'), item.get('last_modified'))
+# # 6. wikipedia
+# with open(r'd:\1_projects\aitf-ugm-tim3\db\wikipedia.json', 'r', encoding='utf-8') as f:
+#     data = json.load(f)
+#     for item in track(data, description="wikipedia"):
+#         upsert_url(item.get('url'), item.get('title'), 'WIKIPEDIA')
+#         insert_text(item.get('url'), item.get('text'), item.get('last_modified'))
 
 conn.commit()
 conn.close()

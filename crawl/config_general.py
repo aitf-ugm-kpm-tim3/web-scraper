@@ -634,6 +634,138 @@ GENERAL_SITES_CONFIG = {
             "wait_for": "div.detail-card",
         },
     },
+    "KEHUTANAN_PERS": {
+        "links": {
+            "url_template": "https://www.kehutanan.go.id/pers?page={page}",
+            "schema": {
+                "name": "KEHUTANAN_PERS_LINKS",
+                "baseSelector": "div.main-container",
+                "fields": [
+                    {"name": "page", "selector": "a.border-green.text-green", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.grid.grid-cols-2 > div:nth-child(-n+12)",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h3", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "a.border-green.text-green",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEHUTANAN_PERS_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "p.text-gray-600.mb-4", "type": "text"},
+                    {"name": "text", "selector": "div.prose.max-w-none", "type": "text"},
+                ],
+            },
+            "wait_for": "div.prose.max-w-none",
+        },
+    },
+    "KEHUTANAN_BERITA": {
+        "links": {
+            "url_template": "https://www.kehutanan.go.id/news?page={page}",
+            "schema": {
+                "name": "KEHUTANAN_BERITA_LINKS",
+                "baseSelector": "div.main-container",
+                "fields": [
+                    {"name": "page", "selector": "a.border-green.text-green", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.grid.grid-cols-2 > div:nth-child(-n+12)",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h3", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "a.border-green.text-green",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEHUTANAN_BERITA_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "p.text-gray-600.mb-4", "type": "text"},
+                    {"name": "text", "selector": "div.prose.max-w-none", "type": "text"},
+                ],
+            },
+            "wait_for": "div.prose.max-w-none",
+        },
+    },
+    "KEMKES": {
+        "links": {
+            "url_template": "https://www.kemkes.go.id/id/category/rilis-berita/{page}",
+            "schema": {
+                "name": "KEMKES_LINKS",
+                "baseSelector": "div.content-wrapper",
+                "fields": [
+                    {"name": "page", "selector": "a.page-link.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.col-md-4.mb-4",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h4", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "a.page-link.active",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMKES_DETAIL",
+                "baseSelector": "div.col-md-8.mb-4",
+                "fields": [
+                    {"name": "date", "selector": "time", "type": "text"},
+                    {"name": "text", "selector": "div.isi-konten", "type": "text"},
+                ],
+            },
+            "wait_for": "div.isi-konten",
+        },
+    },
+    "KY": {
+        "links": {
+            "url_template": "https://komisiyudisial.go.id/frontend/pers_release?page={page}",
+            "schema": {
+                "name": "KY_LINKS",
+                "baseSelector": "div.content",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "ul.latest-posts > li",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.content",
+        },
+        "detail": {
+            "schema": {
+                "name": "KY_DETAIL",
+                "baseSelector": "section#main",
+                "fields": [
+                    {"name": "date", "selector": "footer.entry-meta", "type": "text"},
+                    {"name": "text", "selector": "div.entry-content", "type": "text"},
+                ],
+            },
+            "wait_for": "div.entry-content",
+        },
+    },
 }
 
 SCRAPER_CONFIG = {
