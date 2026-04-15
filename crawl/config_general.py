@@ -766,6 +766,303 @@ GENERAL_SITES_CONFIG = {
             "wait_for": "div.entry-content",
         },
     },
+    "KEMENKUM_PERS": {
+        "links": {
+            "url_template": "https://kemenkum.go.id/siaran-pers?start={page}0",
+            "schema": {
+                "name": "KEMENKUM_PERS_LINKS",
+                "baseSelector": "form.com-content-category__articles",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "table.com-content-category__table > tbody > tr",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "th a", "type": "text"},
+                            {"name": "link", "selector": "th a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "table.com-content-category__table",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMENKUM_PERS_DETAIL",
+                "baseSelector": "div.article-details",
+                "fields": [
+                    {"name": "date", "selector": "time", "type": "text"},
+                    {"name": "text", "selector": "div:nth-child(6)", "type": "text"},
+                ],
+            },
+            "wait_for": "div.article-details",
+        },
+    },
+    "KEMENKUM_BERITA": {
+        "links": {
+            "url_template": "https://kemenkum.go.id/berita-utama?start={page}0",
+            "schema": {
+                "name": "KEMENKUM_BERITA_LINKS",
+                "baseSelector": "form.com-content-category__articles",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "table.com-content-category__table > tbody > tr",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "th a", "type": "text"},
+                            {"name": "link", "selector": "th a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "table.com-content-category__table",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMENKUM_BERITA_DETAIL",
+                "baseSelector": "div.article-details",
+                "fields": [
+                    {"name": "date", "selector": "time", "type": "text"},
+                    {"name": "text", "selector": "div:nth-child(6)", "type": "text"},
+                ],
+            },
+            "wait_for": "div.article-details",
+        },
+    },
+    "KEMENDAG": {
+        "links": {
+            "url_template": "https://www.kemendag.go.id/berita/siaran-pers?page={page}",
+            "schema": {
+                "name": "KEMENDAG_LINKS",
+                "baseSelector": "div.col-lg-8",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "article",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h5 a", "type": "text"},
+                            {"name": "link", "selector": "h5 a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.col-lg-8",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMENDAG_DETAIL",
+                "baseSelector": "main.pb-30",
+                "fields": [
+                    {"name": "date", "selector": "div.entry-meta > span:nth-child(2)", "type": "text"},
+                    {"name": "text", "selector": "div.entry-main-content", "type": "text"},
+                ],
+            },
+            "wait_for": "main.pb-30",
+        },
+    },
+    "KEJAKSAAN_PERS": {
+        "links": {
+            "url_template": "https://www.kejaksaan.go.id/conference/bulletin?page={page}",
+            "schema": {
+                "name": "KEJAKSAAN_PERS_LINKS",
+                "baseSelector": "div.blog-posts",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "article",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h2 a", "type": "text"},
+                            {"name": "link", "selector": "h2 a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.blog-posts",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEJAKSAAN_PERS_DETAIL",
+                "baseSelector": "article.post",
+                "fields": [
+                    {"name": "date", "selector": "div.post-meta > span:nth-child(1) span", "type": "text"},
+                    {"name": "text", "selector": "div.post-content", "type": "text"},
+                ],
+            },
+            "wait_for": "article.post",
+        },
+    },
+    "KEJAKSAAN_BERITA": {
+        "links": {
+            "url_template": "https://www.kejaksaan.go.id/conference/news?page={page}",
+            "schema": {
+                "name": "KEJAKSAAN_BERITA_LINKS",
+                "baseSelector": "div.blog-posts",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "article",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h2 a", "type": "text"},
+                            {"name": "link", "selector": "h2 a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.blog-posts",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEJAKSAAN_BERITA_DETAIL",
+                "baseSelector": "article.post",
+                "fields": [
+                    {"name": "date", "selector": "div.post-meta > span:nth-child(1) span", "type": "text"},
+                    {"name": "text", "selector": "div.post-content", "type": "text"},
+                ],
+            },
+            "wait_for": "article.post",
+        },
+    },
+    "PPPA": {
+        "links": {
+            "url_template": "https://www.kemenpppa.go.id/siaran-pers?page={page}",
+            "schema": {
+                "name": "PPPA_LINKS",
+                "baseSelector": "section.events-section-two",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.inner-box",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h4 a", "type": "text"},
+                            {"name": "link", "selector": "h4 a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "section.events-section-two",
+        },
+        "detail": {
+            "schema": {
+                "name": "PPPA_DETAIL",
+                "baseSelector": "section.content",
+                "fields": [
+                    {"name": "date", "selector": "ul.post-meta > li:nth-child(1)", "type": "text"},
+                    {"name": "text", "selector": "div.lower-content", "type": "text"},
+                ],
+            },
+            "wait_for": "section.content",
+        },
+    },
+    "KEMENPORA": {
+        "links": {
+            "url_template": "https://www.kemenpora.go.id/berita?page={page}",
+            "schema": {
+                "name": "KEMENPORA_LINKS",
+                "baseSelector": "div.newslist",
+                "fields": [
+                    {"name": "page", "selector": "li.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.newslist-col",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h3 a", "type": "text"},
+                            {"name": "link", "selector": "h3 a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.newslist",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMENPORA_DETAIL",
+                "baseSelector": "article.detailcontainer",
+                "fields": [
+                    {"name": "date", "selector": "div.newsdate", "type": "text"},
+                    {"name": "text", "selector": "div.artikel-content", "type": "text"},
+                ],
+            },
+            "wait_for": "article.detailcontainer",
+        },
+    },
+    "POLKAM": {
+        "links": {
+            "url_template": "https://polkam.go.id/indeks-berita/page/{page}/",
+            "schema": {
+                "name": "POLKAM_LINKS",
+                "baseSelector": "div.post-area",
+                "fields": [
+                    {"name": "page", "selector": "span.page-numbers.current", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "article",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a.entire-meta-link span", "type": "text"},
+                            {"name": "link", "selector": "a.entire-meta-link", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.post-area",
+        },
+        "detail": {
+            "schema": {
+                "name": "POLKAM_DETAIL",
+                "baseSelector": "div.container-wrap",
+                "fields": [
+                    {"name": "date", "selector": "span.meta-date", "type": "text"},
+                    {"name": "text", "selector": "div.content-inner", "type": "text"},
+                ],
+            },
+            "wait_for": "div.container-wrap",
+        },
+    },
+    "KEMENKOINFRA": {
+        "links": {
+            "url_template": "https://kemenkoinfra.go.id/category/berita/{page}0",
+            "schema": {
+                "name": "KEMENKOINFRA_LINKS",
+                "baseSelector": "div.container.py-4",
+                "fields": [
+                    {"name": "page", "selector": "li.page-item.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "article",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "h2 a", "type": "text"},
+                            {"name": "link", "selector": "h2 a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.container.py-4",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMENKOINFRA_DETAIL",
+                "baseSelector": "article.post",
+                "fields": [
+                    {"name": "date", "selector": "div.post-date", "type": "text"},
+                    {"name": "text", "selector": "div.post-content div:nth-child(3)", "type": "text"},
+                ],
+            },
+            "wait_for": "article.post",
+        },
+    },
 }
 
 SCRAPER_CONFIG = {
@@ -773,7 +1070,7 @@ SCRAPER_CONFIG = {
     "max_consecutive_empty": 10,
     "concurrency_limit": 10,
     "polite_delay": 0.5,    
-    "wait_timeout": 10000
+    "wait_timeout": 30000
 }
 
 OUTPUT_LINKS_FILE = str(DB_ROOT / "siaran_pers_general_links.json")
