@@ -1063,6 +1063,39 @@ GENERAL_SITES_CONFIG = {
             "wait_for": "article.post",
         },
     },
+    "DIKTISAINTEK": {
+        "links": {
+            "url_template": "https://kemdiktisaintek.go.id/news?page={page}",
+            "schema": {
+                "name": "DIKTISAINTEK_LINKS",
+                "baseSelector": "div.bg-white.p-6.rounded-xl.my-4",
+                "fields": [
+                    {"name": "page", "selector": "div.flex.flex-col-reverse a.text-white", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.flex.w-full.items-center.gap-x-4",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.bg-white.p-6.rounded-xl.my-4",
+        },
+        "detail": {
+            "schema": {
+                "name": "DIKTISAINTEK_DETAIL",
+                "baseSelector": "main",
+                "fields": [
+                    {"name": "date", "selector": "div.flex.w-full.items-center > p:nth-child(2)", "type": "text"},
+                    {"name": "text", "selector": "article", "type": "text"},
+                ],
+            },
+            "wait_for": "main",
+        },
+    },
 }
 
 SCRAPER_CONFIG = {
