@@ -1096,6 +1096,138 @@ GENERAL_SITES_CONFIG = {
             "wait_for": "main",
         },
     },
+    "KEMENPAR": {
+        "links": {
+            "url_template": "https://kemdiktisaintek.go.id/news?page={page}",
+            "schema": {
+                "name": "KEMENPAR_LINKS",
+                "baseSelector": "div.bg-white.p-6.rounded-xl.my-4",
+                "fields": [
+                    {"name": "page", "selector": "div.flex.flex-col-reverse a.text-white", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.flex.w-full.items-center.gap-x-4",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.bg-white.p-6.rounded-xl.my-4",
+        },
+        "detail": {
+            "schema": {
+                "name": "KEMENPAR_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "div.container.relative > div:nth-child(2) span.flex", "type": "text"},
+                    {"name": "text", "selector": "div.nc-SingleContent", "type": "text"},
+                ],
+            },
+            "wait_for": "div.nc-SingleContent",
+        },
+    },
+    "IMIPAS": {
+        "links": {
+            "url_template": "https://kemdiktisaintek.go.id/news?page={page}",
+            "schema": {
+                "name": "IMIPAS_LINKS",
+                "baseSelector": "div.bg-white.p-6.rounded-xl.my-4",
+                "fields": [
+                    {"name": "page", "selector": "div.flex.flex-col-reverse a.text-white", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.flex.w-full.items-center.gap-x-4",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.bg-white.p-6.rounded-xl.my-4",
+        },
+        "detail": {
+            "schema": {
+                "name": "IMIPAS_DETAIL",
+                "baseSelector": "section#sp-main-body",
+                "fields": [
+                    {"name": "date", "selector": "time", "type": "text"},
+                    {"name": "text", "selector": "div.article-details > div:nth-child(7)", "type": "text"},
+                ],
+            },
+            "wait_for": "section#sp-main-body",
+        },
+    },
+    "DPD": {
+        "links": {
+            "url_template": "https://dpd.go.id/berita/halaman/{page}?s=",
+            "schema": {
+                "name": "DPD_LINKS",
+                "baseSelector": "div.bg-white.p-6.rounded-xl.my-4",
+                "fields": [
+                    {"name": "page", "selector": "div.flex.flex-col-reverse a.text-white", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.flex.w-full.items-center.gap-x-4",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": "a", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "div.bg-white.p-6.rounded-xl.my-4",
+        },
+        "detail": {
+            "schema": {
+                "name": "DPD_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "i.bi-calendar-event", "type": "text"},
+                    {"name": "text", "selector": "div.mb-5", "type": "text"},
+                ],
+            },
+            "wait_for": "div.mb-5",
+        },
+    },
+    "BKPM": {
+        "links": {
+            "url_template": "https://bkpm.go.id/id/info/siaran-pers?page={page}",
+            "schema": {
+                "name": "BKPM_LINKS",
+                "baseSelector": "section#press-release",
+                "fields": [
+                    {"name": "page", "selector": "a.border-0.rounded-5.active", "type": "text"},
+                    {
+                        "name": "news_items",
+                        "selector": "div.flex-row.px-1.py-2",
+                        "type": "list",
+                        "fields": [
+                            {"name": "title", "selector": ".fw-semibold.fs-6.lh-sm", "type": "text"},
+                            {"name": "link", "selector": "a", "type": "attribute", "attribute": "href"},
+                        ],
+                    },
+                ],
+            },
+            "wait_for": "section#press-release",
+        },
+        "detail": {
+            "schema": {
+                "name": "BKPM_DETAIL",
+                "baseSelector": "body",
+                "fields": [
+                    {"name": "date", "selector": "p.pb-1.text-dark-gray.fw-semibold", "type": "text"},
+                    {"name": "text", "selector": "div.gap-4.px-4.d-flex.flex-column > div:nth-child(2)", "type": "text"},
+                ],
+            },
+            "wait_for": "div.gap-4.px-4.d-flex.flex-column",
+        },
+    },
 }
 
 SCRAPER_CONFIG = {

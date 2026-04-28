@@ -21,29 +21,11 @@ schema = {
     "fields": [
         {"name": "tajuk", "selector": "h1.produk-title", "type": "text"},
         {"name": "judul", "selector": "div.align-items-start > div:nth-child(1) span", "type": "text"},
-        {"name": "tipe_dokumen", "selector": "div.align-items-start > div:nth-child(2) span", "type": "text"},
-        {"name": "nomor", "selector": "div.align-items-start > div:nth-child(3) span", "type": "text"},
-        {"name": "tahun", "selector": "div.align-items-start > div:nth-child(4) span", "type": "text"},
-        {"name": "tanggal_penetapan", "selector": "div.align-items-start > div:nth-child(5) span", "type": "text"},
-        {"name": "tanggal_pengundangan", "selector": "div.align-items-start > div:nth-child(6) span", "type": "text"},
-        {"name": "tempat_penetapan", "selector": "div.align-items-start > div:nth-child(7) span", "type": "text"},
-        {"name": "sumber", "selector": "div.align-items-start > div:nth-child(8) span", "type": "text"},
-        {"name": "bahasa", "selector": "div.align-items-start > div:nth-child(9) span", "type": "text"},
-        {"name": "lokasi", "selector": "div.align-items-start > div:nth-child(10) span", "type": "text"},
-        {"name": "bidang_hukum", "selector": "div.align-items-start > div:nth-child(11) span", "type": "text"},
         {"name": "jenis_dokumen", "selector": "div.produk-sidebar > div:nth-child(1) ul li:nth-child(2)", "type": "text"},
         {"name": "singkatan_jenis", "selector": "div.produk-sidebar > div:nth-child(2) ul li:nth-child(2)", "type": "text"},
         {"name": "status", "selector": "div.produk-sidebar > div:nth-child(3) ul li:nth-child(2)", "type": "text"},
         {"name": "keterangan status", "selector": "div.produk-sidebar > div:nth-child(4) ul li:nth-child(2)", "type": "text"},
-        {"name": "lampiran_dokumen", "selector": "div.produk-sidebar > div:nth-child(5) ul li:nth-child(2) a:nth-child(2)", "type": "attribute", "attribute": "href"},
-        {"name": "teu_badan", "selector": "div.main-content > div:nth-child(4)", "type": "text"},
         {"name": "subjek", "selector": "div.subjek-tags", "type": "text"},
-        {"name": "peraturan_terkait", "selector": "div.main-content > div:nth-child(6) > div div", "type": "text"},
-        {"name": "dokumen_terkait", "selector": "div.main-content > div:nth-child(7) > div div", "type": "text"},
-        {"name": "peraturan_pelaksanaan", "selector": "div.main-content > div:nth-child(8) > div div", "type": "text"},
-        {"name": "hasil_uji_materi", "selector": "div.main-content > div:nth-child(9) > div div", "type": "text"},
-        {"name": "isi_dokumen", "selector": "div#produk-content", "type": "text"},
-        {"name": "produk_hukum_terkait", "selector": "div.main-content > div:nth-child(12) > div div", "type": "text"}
     ]
 }
 
@@ -57,7 +39,8 @@ async def scrape_details():
 
     print(f"Loaded {len(items)} items from {INPUT_FILE}.")
 
-    # Load existing results or initialize with input items
+    # Load existing results and merge with input items
+    results = []
     if os.path.exists(OUTPUT_FILE):
         try:
             with open(OUTPUT_FILE, 'r', encoding='utf-8') as f:
@@ -65,8 +48,25 @@ async def scrape_details():
                 print(f"Loaded existing {len(results)} records from {OUTPUT_FILE}.")
         except Exception as e:
             print(f"Could not load existing {OUTPUT_FILE}: {e}")
-            results = items.copy()
-    else:
+            results = []
+
+    # Map existing results by URL for quick lookup
+    existing_urls = {item.get('url') for item in results if item.get('url')}
+    
+    # Add items from INPUT_FILE that are not in results
+    new_items_added = 0
+    for item in items:
+        if item.get('url') and item.get('url') not in existing_urls:
+            results.append(item)
+            existing_urls.add(item.get('url'))
+            new_items_added += 1
+    
+    if new_items_added > 0:
+        print(f"Added {new_items_added} new items from {INPUT_FILE} to the processing list.")
+        # Save the updated results list with new items
+        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+            json.dump(results, f, ensure_ascii=False, indent=4)
+    elif not results and items:
         print(f"Initializing {OUTPUT_FILE} with {len(items)} records from {INPUT_FILE}.")
         results = items.copy()
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
@@ -75,8 +75,8 @@ async def scrape_details():
     # Use item_id or url to map results for easy updating
     results_map = {item.get('url'): i for i, item in enumerate(results)}
     
-    # Identify which items still need detail scraping (e.g., those without 'tajuk')
-    items_to_scrape = [item for item in results if 'tajuk' not in item]
+    # Identify which items still need detail scraping (those without 'lampiran_dokumen')
+    items_to_scrape = [item for item in results if 'status' not in item]
     
     print(f"Starting to scrape {len(items_to_scrape)} items that lack detailed data...")
 
@@ -116,8 +116,9 @@ async def scrape_details():
                 if result.success and result.extracted_content:
                     try:
                         data = json.loads(result.extracted_content)
-                        if data and isinstance(data, list):
-                            extracted_data = data[0]
+                        if isinstance(data, list):
+                            # If baseSelector fails, data is []. We mark as success with empty lampiran_dokumen to avoid retries.
+                            extracted_data = data[0] if data else {"status": ""}
                             success = True
                     except json.JSONDecodeError:
                         pass
@@ -129,7 +130,7 @@ async def scrape_details():
                     return {**item, **extracted_data}
                 else:
                     failed_count += 1
-                    status = getattr(result, 'status_code', 'Unknown')
+                    status = result.status_code
                     print(f"[{progress_count}/{total_to_scrape}] FAILED - {url} (Status: {status})")
                     return None
             except Exception as e:
